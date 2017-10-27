@@ -2,7 +2,7 @@ import React from 'react';
 import StockRow from './StockRow';
 
 const StockTableStyle = {
-  border: "1px solid"
+
 };
 
 export default class StockTable extends React.Component {
@@ -17,17 +17,21 @@ export default class StockTable extends React.Component {
     });
 
     return (
-      <table style={StockTableStyle}>
-        <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {rows}
-        </tbody>
-      </table>)
+      <div>
+        <h4 className="header">EXCHANGE: {this.props.exchange.name}</h4>
+        <table style={StockTableStyle}>
+          <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>Volume</th>
+          </tr>
+          </thead>
+          <tbody>
+          {rows}
+          </tbody>
+        </table>
+      </div>)
   }
 }

@@ -2,6 +2,11 @@ import React from 'react';
 import Root from './Root';
 import GameState from '../simulation/GameState'
 
+const AppStyle = {
+  height: "100%",
+  width: "100%",
+}
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,12 +21,11 @@ export default class App extends React.Component {
   handleGameStateChange(state) {
     console.log(this.state);
     this.setState(state);
-    // this.forceUpdate();
   }
 
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div style={AppStyle}>
         <Root gamestate={this.state} />
       </div>
     );
