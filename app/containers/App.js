@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
     this.state = this.gameState.getStateObject();
 
-    this.gameState.startSimulation();
+    // this.gameState.startSimulation();
   }
 
   handleGameStateChange(state) {
