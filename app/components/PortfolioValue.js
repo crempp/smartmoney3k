@@ -5,6 +5,8 @@ export default class PortfolioValue extends React.Component {
     let PortfolioValueStyle = {
       backgroundColor: "#ffffff",
       color: "#000000",
+      paddingLeft: "5px",
+      paddingRight: "5px",
     };
 
     let value = this.props.portfolio.value;
@@ -20,7 +22,7 @@ export default class PortfolioValue extends React.Component {
     }
 
     return (
-      <span style={PortfolioValueStyle}>VALUE: {value.toFixed(2)}</span>
+      <span style={PortfolioValueStyle}>VALUE: ${value.toFixed(2)}</span>
     )
   }
 }

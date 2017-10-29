@@ -9,8 +9,9 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
-})
+});
 
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: __dirname + '/app/index.js',
@@ -34,10 +35,19 @@ module.exports = {
     path: __dirname + '/build'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      // 'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"development"'
+    }),
     HTMLWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    devFlagPlugin
+    devFlagPlugin,
+    // new BundleAnalyzerPlugin(),
+    // new webpack.ProvidePlugin({
+    //   // d3: "d3", // if you add this line you can remove the import in the code
+    //   "window.d3": "d3" // this adds d3 in the window object for techan
+    // })
   ],
   resolve: {
     modules: [

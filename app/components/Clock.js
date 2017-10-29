@@ -1,14 +1,15 @@
 import React from 'react';
+import { time2str } from '../utils/convert'
+
+const ClockStyle = {
+  fontWeight: "bold",
+  paddingRight: "5px",
+};
 
 export default class Clock extends React.Component {
   render() {
-    let date = new Date(this.props.time);
-    let time = date.getHours().toString(10).padStart(2, "0") + ":" +
-               date.getMinutes().toString(10).padStart(2, "0") + ":" +
-               date.getSeconds().toString(10).padStart(2, "0");
-
     return (
-      <span>TIME: {time}</span>
+      <span style={ClockStyle}>{time2str(this.props.time)}</span>
     )
   }
 }

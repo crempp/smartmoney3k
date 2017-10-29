@@ -1,39 +1,48 @@
 import React, { Component } from 'react'
-import * as d3 from "d3";
+import { timeParse, scaleTime, scaleLinear, select, timeFormat } from 'd3';
+import { scaleDiscontinuous, discontinuitySkipWeekends,
+  chartSvgCartesian, extentDate, extentLinear } from 'd3fc';
+import { seriesSvgCandlestick, autoBandwidth } from 'd3fc-series';
 import '../style/chart.css';
+
+const ChartStyle = {
+  width: "100%",
+  height: "100%",
+  margin: "0",
+  padding: "0",
+};
 
 export default class Graph extends Component {
   constructor(props){
     super(props)
 
-    this.layout = {
-      margin: {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 50
-      }
-    }
-    this.layout.width = this.props.width - this.layout.margin.left - this.layout.margin.right
-    this.layout.height = this.props.height - this.layout.margin.top - this.layout.margin.bottom
+    // let margin = {
+    //   top: 20,
+    //   right: 20,
+    //   bottom: 50,
+    //   left: 70
+    // };
+    // let width = this.props.width - margin.left - margin.right;
+    // let height = this.props.height - margin.top - margin.bottom;
+    // this.parseDate = timeParse("%I:%M:%S");
+    // this.dateFormat = timeFormat("%I:%M:%S");
 
-    this.parseDate = d3.timeParse("%d-%b-%y");
+    let xScale = scaleTime();//.tickFormat(timeFormat("%I:%M:%S"));
+    let yScale = scaleLinear();
 
-    this.x = techan.scale.financetime()
-      .range([0, this.layout.width]);
+    this.candlestickSeries = seriesSvgCandlestick()
+      .bandwidth(2);
+    this.chart = chartSvgCartesian(xScale, yScale)
+      .yOrient('left')
+      .plotArea(this.candlestickSeries)
+      .xLabel('Time')
+      .yLabel('Price')
+      .chartLabel('Stock: ' + this.props.stockSymbol);
 
-    this.y = d3.scaleLinear()
-      .range([this.layout.height, 0]);
-
-    this.candlestick = techan.plot.candlestick()
-      .xScale(this.x)
-      .yScale(this.y);
-
-    this.xAxis = d3.axisBottom()
-      .scale(this.x);
-
-    this.yAxis = d3.axisLeft()
-      .scale(this.y);
+    this.xExtent = extentDate()
+      .accessors([d => d.date]);
+    this.yExtent = extentLinear()
+      .accessors([d => d.high, d => d.low]);
 
     this.createChart = this.createChart.bind(this)
   }
@@ -47,59 +56,29 @@ export default class Graph extends Component {
   }
 
   createChart() {
-    d3.select(this.node)
-      .attr("width", this.layout.width + this.layout.margin.left + this.layout.margin.right)
-      .attr("height", this.layout.height + this.layout.margin.top + this.layout.margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + this.layout.margin.left + "," + this.layout.margin.top + ")");
-
-    // Add data
-    let accessor = this.candlestick.accessor();
-
-    let data = this.props.data.slice(0, 200).map((d) => {
+    let size = Math.max(this.props.data.length - 200, this.props.data.length);
+    let data = this.props.data.slice(-size).map((d) => {
       return {
-        date: this.parseDate(d.Date),
-        open: +d.Open,
-        high: +d.High,
-        low: +d.Low,
-        close: +d.Close,
-        volume: +d.Volume
+        date: new Date(d.date),
+        open: +d.open,
+        high: +d.high,
+        low: +d.low,
+        close: +d.close,
+        volume: +d.volume
       };
-    }).sort((a, b) => { return d3.ascending(accessor.d(a), accessor.d(b)); });
+    });
 
-    d3.select(this.node).append("g")
-      .attr("class", "candlestick");
+    this.chart
+      .xDomain(this.xExtent(data))
+      .yDomain(this.yExtent(data))
 
-    d3.select(this.node).append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + this.layout.height + ")");
-
-    d3.select(this.node).append("g")
-      .attr("class", "y axis")
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Price ($)");
-
-    // Data to display initially
-    this.draw(data.slice(0, data.length-20));
-    // Only want this button to be active if the data has loaded
-    // d3.d3.select("button").on("click", () => { draw(data); }).style("display", "inline");
+    select(this.node)
+      .datum(data)
+      .call(this.chart);
   }
 
-  draw(data) {
-    this.x.domain(data.map(this.candlestick.accessor().d));
-    this.y.domain(techan.scale.plot.ohlc(data, this.candlestick.accessor()).domain());
 
-    d3.select(this.node).selectAll("g.candlestick").datum(data).call(this.candlestick);
-    d3.select(this.node).selectAll("g.x.axis").call(this.xAxis);
-    d3.select(this.node).selectAll("g.y.axis").call(this.yAxis);
-  }
   render() {
-    return <svg ref={node => this.node = node}
-                width={this.props.width} height={this.props.height}>
-    </svg>
+    return <div style={ChartStyle} ref={node => this.node = node}></div>
   }
 }

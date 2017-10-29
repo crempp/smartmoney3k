@@ -5,13 +5,15 @@ export default class Stock {
     this.change = 0.0;
     this.volume = 0;
 
-    this.history = {};
+    this.history = [];
   }
 
   update (time) {
-    this.history[time] = {
-      price: this.price
-    };
+    this.history.push({
+      time: time,
+      price: this.price,
+      volume: this.volume
+    });
 
     this.volume = chance.integer({min: 0, max: 5000});
 

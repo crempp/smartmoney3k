@@ -1,6 +1,7 @@
 import { simulationTickMs } from './Settings';
 import { generateExchanges } from "./Generators";
 import Portfolio from './Portfolio';
+import Chart from './Chart'
 
 export default class GameState {
 
@@ -8,14 +9,18 @@ export default class GameState {
     this.stateChangeCB = stateChangeCB;
 
     this.time = Date.now(); // Milliseconds
+    this.tick = 0;
 
     this.exchanges = generateExchanges();
-
     this.portfolio = new Portfolio();
+    this.cash = 100000.00;
+
     // TEMP
     this.portfolio.addPosition(this.exchanges[0].stocks[0], 67, this.time);
     this.portfolio.addPosition(this.exchanges[0].stocks[5], 560, this.time);
     this.portfolio.addPosition(this.exchanges[0].stocks[10], 30, this.time);
+
+    this.chart = new Chart(this.portfolio.positions[0].stock);
   }
 
   startSimulation() {
@@ -31,6 +36,7 @@ export default class GameState {
   simulateTick () {
     console.log("tick");
 
+    this.tick++;
     this.time = Date.now(); // Milliseconds
 
     for (let exchange of this.exchanges) {
@@ -41,6 +47,10 @@ export default class GameState {
 
     this.portfolio.updateValue();
 
+    if (this.tick % this.chart.timeSliceSeconds == 0) {
+      this.chart.updateData();
+    }
+
     this.stateChangeCB(this.getStateObject());
   }
 
@@ -48,3 +58,4 @@ export default class GameState {
     return JSON.parse(JSON.stringify(this));
   }
 };
+

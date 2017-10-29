@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import _ from 'lodash'
+import { omit } from 'lodash'
 
 const initialState = {
   stocks: [1],
@@ -40,7 +40,7 @@ export default function exchange(state = initialState, action) {
       return {
         ...state,
         stocks: state.stocks.filter(id => id !== action.id),
-        stocksById: _.omit(state.stocksById, action.id)
+        stocksById: omit(state.stocksById, action.id)
       }
 
     default:
