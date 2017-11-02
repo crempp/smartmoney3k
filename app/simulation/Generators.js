@@ -4,7 +4,7 @@ import Exchange from './Exchange'
 export function generateExchanges() {
   let exchanges = [];
   exchanges.push(new Exchange("FastFunds"));
-  exchanges.push(new Exchange("CorpXchg"));
+  //exchanges.push(new Exchange("CorpXchg"));
   return exchanges;
 }
 

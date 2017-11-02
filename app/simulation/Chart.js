@@ -1,12 +1,13 @@
 import { chunk } from 'lodash'
+import { chartTimeSliceSeconds } from './Settings';
 import { time2str } from '../utils/convert'
 
 export default class Chart {
-  constructor(stock) {
-    this.timeSliceSeconds = 5;
-
+  constructor(state) {
+    this.state = state;
+    this.timeSliceSeconds = chartTimeSliceSeconds;
     this.data = [];
-    this.stock = stock;
+    this.stock = null;
   }
 
   setStock (stock) {
@@ -14,30 +15,32 @@ export default class Chart {
   }
 
   updateData () {
-    let data = [];
-    let chunks = chunk(this.stock.history, this.timeSliceSeconds);
+    if (this.stock) {
+      let data = [];
+      let chunks = chunk(this.stock.history, this.timeSliceSeconds);
 
-    chunks.forEach( (c) => {
-      let high = null;
-      let low = null;
-      let volume = 0.0;
-      for (let s of c) {
-        if (high === null || s.price > high) high = s.price;
-        if (low === null || s.price < low) low = s.price;
-        volume += s.volume
-      }
+      chunks.forEach((c) => {
+        let high = null;
+        let low = null;
+        let volume = 0.0;
+        for (let s of c) {
+          if (high === null || s.price > high) high = s.price;
+          if (low === null || s.price < low) low = s.price;
+          volume += s.volume
+        }
 
-      data.push({
-        "date": c.slice(-1)[0].time,
-        "open": c[0].price.toFixed(2).toString(),
-        "high": high.toFixed(2).toString(),
-        "low": low.toFixed(2).toString(),
-        "close":c.slice(-1)[0].price.toFixed(2).toString(),
-        "volume": volume.toString()
+        data.push({
+          "date": c.slice(-1)[0].time,
+          "open": c[0].price.toFixed(2).toString(),
+          "high": high.toFixed(2).toString(),
+          "low": low.toFixed(2).toString(),
+          "close": c.slice(-1)[0].price.toFixed(2).toString(),
+          "volume": volume.toString()
+        })
       })
-    })
 
-    this.data = data;
+      this.data = data;
+    }
   }
 
   getData () {

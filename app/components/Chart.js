@@ -36,8 +36,7 @@ export default class Graph extends Component {
       .yOrient('left')
       .plotArea(this.candlestickSeries)
       .xLabel('Time')
-      .yLabel('Price')
-      .chartLabel('Stock: ' + this.props.stockSymbol);
+      .yLabel('Price');
 
     this.xExtent = extentDate()
       .accessors([d => d.date]);
@@ -56,25 +55,28 @@ export default class Graph extends Component {
   }
 
   createChart() {
-    let size = Math.max(this.props.data.length - 200, this.props.data.length);
-    let data = this.props.data.slice(-size).map((d) => {
-      return {
-        date: new Date(d.date),
-        open: +d.open,
-        high: +d.high,
-        low: +d.low,
-        close: +d.close,
-        volume: +d.volume
-      };
-    });
+    if (this.props.chart.stock) {
+      let size = Math.max(this.props.chart.data.length - 200, this.props.chart.data.length);
+      let data = this.props.chart.data.slice(-size).map((d) => {
+        return {
+          date: new Date(d.date),
+          open: +d.open,
+          high: +d.high,
+          low: +d.low,
+          close: +d.close,
+          volume: +d.volume
+        };
+      });
 
-    this.chart
-      .xDomain(this.xExtent(data))
-      .yDomain(this.yExtent(data))
+      this.chart
+        .xDomain(this.xExtent(data))
+        .yDomain(this.yExtent(data))
+        .chartLabel('Stock: ' + this.props.chart.stock.symbol);
 
-    select(this.node)
-      .datum(data)
-      .call(this.chart);
+      select(this.node)
+        .datum(data)
+        .call(this.chart);
+    }
   }
 
 
