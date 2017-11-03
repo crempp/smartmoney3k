@@ -1,9 +1,19 @@
 import React from 'react';
 
 export default class PortfolioRow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleStockClick = this.handleStockClick.bind(this);
+  }
+
+  handleStockClick() {
+    this.props.onUpdate(this.props.position.stock);
+  }
+
   render() {
     let PortfolioRowStyle = {
-
+      cursor: "pointer",
     };
     let PortfolioDataStyle = {
       backgroundColor: "#ffffff",
@@ -22,7 +32,7 @@ export default class PortfolioRow extends React.Component {
     }
 
     return (
-      <tr style={PortfolioRowStyle}>
+      <tr onClick={this.handleStockClick} style={PortfolioRowStyle}>
         <td style={PortfolioDataStyle}>{position.stock.symbol}</td>
         <td style={PortfolioDataStyle}>${position.stock.price.toFixed(2)}</td>
         <td style={PortfolioDataStyle}>${position.stock.change.toFixed(2)}</td>

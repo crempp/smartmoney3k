@@ -79,12 +79,12 @@ export default class Root extends React.Component {
     this.onSystemUpdate = this.onSystemUpdate.bind(this);
     this.onAIModuleUpdate = this.onAIModuleUpdate.bind(this);
     this.onSimulationUpdate = this.onSimulationUpdate.bind(this);
-
+    this.handleStockClick = this.handleStockClick.bind(this);
     // this.gameState.startSimulation();
   }
 
   triggerGameStateChange(gamestate) {
-    // console.debug(this.state);
+    if (gamestate === 'undefined') gamestate = this.state;
     this.setState(gamestate);
   }
 
@@ -112,6 +112,11 @@ export default class Root extends React.Component {
     }
   }
 
+  handleStockClick(stock) {
+    this.gameState.chart.setStock(stock);
+    // this.triggerGameStateChange();
+  }
+
   render() {
     return (
       <div style={{textAlign: 'center'}}>
@@ -128,10 +133,12 @@ export default class Root extends React.Component {
                 <CashDisplay cash={this.state.cash} />
               </div>
               <div style={ScrollableStockData}>
-                <PortfolioTable portfolio={this.state.portfolio} />
+                <PortfolioTable onUpdate={ this.handleStockClick}
+                                portfolio={this.state.portfolio} />
               </div>
               <div style={ScrollableStockData}>
-                <StockTable exchange={this.state.exchanges[0]} />
+                <StockTable onUpdate={ this.handleStockClick}
+                            exchange={this.state.exchanges[0]} />
               </div>
             </div>
             <div style={RightTopContainer}>

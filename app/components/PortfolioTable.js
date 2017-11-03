@@ -6,12 +6,23 @@ const PortfolioTableStyle = {
 };
 
 export default class PortfolioTable extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleStockClick = this.handleStockClick.bind(this);
+  }
+
+  handleStockClick(stock) {
+    this.props.onUpdate(stock);
+  }
+
   render() {
     const rows = [];
 
     this.props.portfolio.positions.forEach((position) => {
       rows.push(
-        <PortfolioRow position={position}
+        <PortfolioRow onUpdate={ this.handleStockClick}
+                      position={position}
                       key={position.stock.symbol}/>
       );
     });

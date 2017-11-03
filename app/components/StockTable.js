@@ -6,12 +6,23 @@ const StockTableStyle = {
 };
 
 export default class StockTable extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleStockClick = this.handleStockClick.bind(this);
+  }
+
+  handleStockClick(stock) {
+    this.props.onUpdate(stock);
+  }
+
   render() {
     const rows = [];
 
     this.props.exchange.stocks.forEach((stock) => {
       rows.push(
-        <StockRow stock={stock}
+        <StockRow onUpdate={ this.handleStockClick}
+                  stock={stock}
                   key={stock.symbol}/>
       );
     });

@@ -28,6 +28,11 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
 ** Show purchasable system upgrades (CPU, Mem) and reduce cost from cash
 * Select stock to show graph
 
+v0.1.1
+* Switch charts to https://github.com/rrag/react-stockcharts-examples2
+* Do a UI pass
+* Better TrailingAction
+
 **v0.2**
 
 
@@ -45,6 +50,7 @@ Better simulation
 Better UI
 * Add volume to chart
 * UI cleanup
+* Filter stock list
 
 Gameplay tweaking
 * Move as much as possible into Simulation/Settings for easier gameplay tweeking

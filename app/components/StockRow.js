@@ -1,9 +1,19 @@
 import React from 'react';
 
 export default class StockRow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleStockClick = this.handleStockClick.bind(this);
+  }
+
+  handleStockClick() {
+    this.props.onUpdate(this.props.stock);
+  }
+
   render() {
     let StockRowStyle = {
-
+      cursor: "pointer",
     };
     let StockDataStyle = {
       backgroundColor: "#ffffff",
@@ -22,7 +32,7 @@ export default class StockRow extends React.Component {
     }
 
     return (
-      <tr style={StockRowStyle}>
+      <tr onClick={this.handleStockClick} style={StockRowStyle} >
         <td style={StockDataStyle}>{stock.symbol}</td>
         <td style={StockDataStyle}>${stock.price.toFixed(2)}</td>
         <td style={StockDataStyle}>${stock.change.toFixed(2)}</td>
