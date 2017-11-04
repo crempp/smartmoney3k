@@ -12,26 +12,31 @@ $ NODE_ENV=development npm run build && npm run start
 **v0.1**
 Basic functionality. Get basic layout and a simple version of game mechanic in place.
 
-* √ Random stock generation
-* √ Exchange and Portfolio stock listing
-* √ Integrate candlebar chart
-* √ Show game status (time/ticks, value, cash)
+* UI
+** √ Integrate candlebar chart
+** √ Show game status (time/ticks, value, cash)
+** √ Selecting a stock loads that stock in the chart
+
 * √ Simulation loop
 ** √ Basic random walk value updates for stocks
 ** √ Update stock listings
 ** √ Update chart
-* Selecting a stock loads that stock in the chart
-* Simulation controls
-** Pause
-* System controls
+
+* Simulation Control
+** √ Pause/Play
+
+* AI System
 ** Show current system stats (CPU, Mem)
-** Show purchasable system upgrades (CPU, Mem) and reduce cost from cash
-* Select stock to show graph
+** √ Show purchasable system upgrades (CPU, Mem) and reduce cost from cash
+** TrailingAction module
 
 v0.1.1
 * Switch charts to https://github.com/rrag/react-stockcharts-examples2
 * Do a UI pass
+** Flexbox?
 * Better TrailingAction
+** Number of shares
+* Disable/Sell modules
 
 **v0.2**
 

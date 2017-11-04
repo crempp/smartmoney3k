@@ -9,6 +9,7 @@ import CashDisplay from '../components/CashDisplay';
 import Controls from '../components/Controls';
 import SystemConfigurator from '../components/SystemConfigurator'
 import AIConfigurator from '../components/AIConfigurator';
+import RunningModules from '../components/RunningModules';
 
 const row1Size = {
   width: '100%',
@@ -52,11 +53,12 @@ const LeftBottomContainer = {
   fontSize: '11px',
 }
 const RightBottomContainer = {
-  width: '740px',
+  width: '738px',
   height: '100%',
   display: 'inline-block',
   verticalAlign: 'top',
-  backgroundColor: 'grey',
+  // backgroundColor: 'grey',
+  border: '1px black solid',
 }
 const ScrollableStockData = {
   width: '100%',
@@ -80,6 +82,7 @@ export default class Root extends React.Component {
     this.onAIModuleUpdate = this.onAIModuleUpdate.bind(this);
     this.onSimulationUpdate = this.onSimulationUpdate.bind(this);
     this.handleStockClick = this.handleStockClick.bind(this);
+    this.onRunningModuleUpdate = this.onRunningModuleUpdate.bind(this);
     // this.gameState.startSimulation();
   }
 
@@ -112,9 +115,12 @@ export default class Root extends React.Component {
     }
   }
 
+  onRunningModuleUpdate(data) {
+
+  }
+
   handleStockClick(stock) {
     this.gameState.chart.setStock(stock);
-    // this.triggerGameStateChange();
   }
 
   render() {
@@ -128,17 +134,17 @@ export default class Root extends React.Component {
           <div style={TopContainer}>
             <div style={LeftTopContainer}>
               <div>
-                <Clock time={this.state.time}/>
-                <PortfolioValue portfolio={this.state.portfolio} />
-                <CashDisplay cash={this.state.cash} />
+                <Clock time={ this.state.time }/>
+                <PortfolioValue portfolio={ this.state.portfolio } />
+                <CashDisplay cash={ this.state.cash } />
               </div>
               <div style={ScrollableStockData}>
-                <PortfolioTable onUpdate={ this.handleStockClick}
-                                portfolio={this.state.portfolio} />
+                <PortfolioTable onUpdate={ this.handleStockClick }
+                                portfolio={ this.state.portfolio } />
               </div>
               <div style={ScrollableStockData}>
-                <StockTable onUpdate={ this.handleStockClick}
-                            exchange={this.state.exchanges[0]} />
+                <StockTable onUpdate={ this.handleStockClick }
+                            exchange={ this.state.exchanges[0] } />
               </div>
             </div>
             <div style={RightTopContainer}>
@@ -150,17 +156,20 @@ export default class Root extends React.Component {
 
           <div style={BottomContainer}>
             <div style={LeftBottomContainer}>
-              <Controls running={this.state.running}
-                        onUpdate={this.onSimulationUpdate} />
+              <Controls running={ this.state.running }
+                        onUpdate={ this.onSimulationUpdate } />
               <hr/>
-              <SystemConfigurator gamestate={this.state}
-                                  onUpdate={this.onSystemUpdate} />
+              <SystemConfigurator gamestate={ this.state }
+                                  onUpdate={ this.onSystemUpdate } />
               <hr/>
-              <AIConfigurator gamestate={this.state}
-                              onUpdate={this.onAIModuleUpdate} />
+              <AIConfigurator gamestate={ this.state }
+                              onUpdate={ this.onAIModuleUpdate } />
             </div>
             <div style={RightBottomContainer}>
-              Modules go here
+              <RunningModules gamestate={ this.state }
+                              modules = { this.state.system.modules }
+                              onUpdate={ this.onRunningModuleUpdate }>
+              </RunningModules>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import { moduleAttributes } from '../Settings';
+import { uuid } from '../../utils/random';
 
 /**
  * Perform a buy or sell when a stock changes by a set percentage over a given
@@ -6,6 +7,8 @@ import { moduleAttributes } from '../Settings';
  */
 export default class TrailingAction {
   constructor(action, percentChange, trailingSeconds) {
+    this.name = 'TrailingAction';
+    this.id = uuid();
     this.cpuUsage = moduleAttributes.trailingAction.cpuUsage;
     this.memUsage = moduleAttributes.trailingAction.memUsage;
 

@@ -3,6 +3,9 @@ import { moduleAttributes } from '../../simulation/Settings';
 
 const TrailingActionStyle = {
   margin: '3px',
+  border: '1px grey solid',
+  fontSize: '10px',
+  textAlign: 'left',
 };
 
 export default class TrailingAction extends React.Component {
@@ -15,6 +18,8 @@ export default class TrailingAction extends React.Component {
       percentChange: moduleAttributes.trailingAction.percentChangeDefault,
       trailingSeconds: moduleAttributes.trailingAction.trailingSecondsDefault,
       cost: moduleAttributes.trailingAction.cost,
+      cpuUsage: moduleAttributes.trailingAction.cpuUsage,
+      memUsage: moduleAttributes.trailingAction.memUsage,
     };
 
     this.handleComponentPurchaseClick = this.handleComponentPurchaseClick.bind(this);
@@ -35,8 +40,23 @@ export default class TrailingAction extends React.Component {
   render() {
     return (
       <div style={TrailingActionStyle}>
-        <span>
-          Trailing action:
+        <div>
+          <span style={{fontWeight: 'bold', float: 'left'}}>
+            Trailing action
+          </span>
+          <button style={{float: 'right'}}
+                  onClick={()=>this.handleComponentPurchaseClick()} >
+            ${this.state.cost}
+          </button>
+          <button style={{float: 'right'}}>
+            edit
+          </button>
+          <button style={{float: 'right'}}>
+            on
+          </button>
+        </div>
+        <hr style={{marginTop: '1px', marginBottom: '1px', clear: 'both'}} />
+        <div>
           <select>
             <option value='buy'>buy</option>
             <option value='sell'>sell</option>
@@ -61,10 +81,20 @@ export default class TrailingAction extends React.Component {
             onChange={ this.handleChange }
           />
           seconds ago
-        </span> [0.8 CPU : 0.8 Mem]
-        <button onClick={()=>this.handleComponentPurchaseClick()} >
-          ${this.state.cost}
-        </button>
+        </div>
+        <hr style={{marginTop: '1px', marginBottom: '1px'}} />
+        <div>
+          <span>
+            CPU Usage
+            <span title='CPU Usage' style={{backgroundColor: 'green', color: 'white'}}>
+              { this.state.cpuUsage }/{ this.state.cpuUsage }
+            </span>
+             : Mem Usage
+            <span title='Mem Usage'>
+            0/{this.state.memUsage}]
+            </span>
+          </span>
+        </div>
       </div>
     )
   }
