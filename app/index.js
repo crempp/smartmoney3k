@@ -6,7 +6,8 @@ import request from 'es6-request';
 import App from './containers/App';
 
 import './style/normalize.css';
-import './style/main.css';
+import './style/main.scss';
+import './style/shared.scss';
 
 // Global randomizer, seeded below using random.org
 const chance = null;

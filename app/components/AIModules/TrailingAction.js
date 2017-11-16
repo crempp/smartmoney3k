@@ -1,13 +1,6 @@
 import React from 'react';
 import { moduleAttributes } from '../../simulation/Settings';
 
-const TrailingActionStyle = {
-  margin: '3px',
-  border: '1px grey solid',
-  fontSize: '10px',
-  textAlign: 'left',
-};
-
 export default class TrailingAction extends React.Component {
 
   constructor(props) {
@@ -39,30 +32,27 @@ export default class TrailingAction extends React.Component {
 
   render() {
     return (
-      <div style={TrailingActionStyle}>
-        <div>
-          <span style={{fontWeight: 'bold', float: 'left'}}>
+      <div className='system-component'>
+        <div className='flex-row-container section-header'>
+          <div className='component-name'>
             Trailing action
-          </span>
-          <button style={{float: 'right'}}
-                  onClick={()=>this.handleComponentPurchaseClick()} >
-            ${this.state.cost}
-          </button>
-          <button style={{float: 'right'}}>
-            edit
-          </button>
-          <button style={{float: 'right'}}>
-            on
-          </button>
+          </div>
+          <div className='component-controls'>
+            <button className='button'
+                    onClick={()=>this.handleComponentPurchaseClick()} >
+              ${this.state.cost}
+            </button>
+            <button className='button'>edit</button>
+            <button className='button'>on</button>
+          </div>
         </div>
-        <hr style={{marginTop: '1px', marginBottom: '1px', clear: 'both'}} />
-        <div>
+
+        <div className='component-details'>
           <select>
-            <option value='buy'>buy</option>
-            <option value='sell'>sell</option>
+            <option value="buy">buy</option>
+            <option value="sell">sell</option>
           </select>
-          when a stock
-          drops below {/*rises above*/}
+          when a stock drops below
           <input
             type='text'
             name='percentChange'
@@ -82,18 +72,15 @@ export default class TrailingAction extends React.Component {
           />
           seconds ago
         </div>
-        <hr style={{marginTop: '1px', marginBottom: '1px'}} />
-        <div>
-          <span>
-            CPU Usage
-            <span title='CPU Usage' style={{backgroundColor: 'green', color: 'white'}}>
-              { this.state.cpuUsage }/{ this.state.cpuUsage }
-            </span>
-             : Mem Usage
-            <span title='Mem Usage'>
-            0/{this.state.memUsage}]
-            </span>
-          </span>
+
+        <div className='flex-row-container component-usage'>
+          <div className='component-usage-title'>Usage:</div>
+          <div className='component-usage-cpu'>
+            CPU <span className='usage-value'>{ this.state.cpuUsage }</span>
+          </div>
+          <div className='component-usage-mem'>
+            Mem <span className='usage-value'>{this.state.memUsage}</span>
+          </div>
         </div>
       </div>
     )

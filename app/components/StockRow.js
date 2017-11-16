@@ -32,11 +32,11 @@ export default class StockRow extends React.Component {
     }
 
     return (
-      <tr onClick={this.handleStockClick} style={StockRowStyle} >
-        <td style={StockDataStyle}>{stock.symbol}</td>
-        <td style={StockDataStyle}>${stock.price.toFixed(2)}</td>
-        <td style={StockDataStyle}>${stock.change.toFixed(2)}</td>
-        <td style={StockDataStyle}>{stock.volume}</td>
+      <tr onClick={this.handleStockClick} >
+        <td>{stock.symbol}</td>
+        <td>${stock.price.toFixed(2)}</td>
+        <td>${stock.change.toFixed(2)}</td>
+        <td>{stock.volume}</td>
       </tr>)
   }
 }

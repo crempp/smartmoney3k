@@ -81,6 +81,6 @@ export default class Graph extends Component {
 
 
   render() {
-    return <div style={ChartStyle} ref={node => this.node = node}></div>
+    return <div className='chart-container'>Chart</div>
   }
 }

@@ -22,7 +22,10 @@ export default class PortfolioValue extends React.Component {
     }
 
     return (
-      <span style={PortfolioValueStyle}>VALUE: ${value.toFixed(2)}</span>
+      <div className='status-item'>
+        <div className='header'>VALUE:</div>
+      <div className='value'>${value.toFixed(2)}</div>
+    </div>
     )
   }
 }

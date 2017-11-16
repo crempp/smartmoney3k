@@ -28,15 +28,17 @@ export default class StockTable extends React.Component {
     });
 
     return (
-      <div>
-        <h4 className="header">EXCHANGE: {this.props.exchange.name}</h4>
-        <table style={StockTableStyle}>
+      <div className='flex-col-container exchange-container'>
+        <div className='section-header'>
+          EXCHANGE: {this.props.exchange.name}
+        </div>
+        <table className='flex-col-container stock-table'>
           <thead>
           <tr>
-            <th>Symbol</th>
+            <th>Symb</th>
             <th>Price</th>
             <th>Change</th>
-            <th>Volume</th>
+            <th>Vol</th>
           </tr>
           </thead>
           <tbody>

@@ -1,0 +1,132 @@
+//---------------------------------------------------------------
+// Shared CSS Classes
+//---------------------------------------------------------------
+
+.flex-col-container {
+  display: flex;
+  flex-flow: column;
+}
+.flex-row-container {
+  display: flex;
+  flex-flow: row;
+}
+.increase {
+  background-color: #10631b;
+}
+
+.decrease {
+  background-color: #801b15;
+}
+.section-header {
+  background-color: #bbb;
+  color: #2b2b2b;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  font-size: 1em;
+}
+
+.status-container {
+  display: flex;
+  justify-content: space-between;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-height: 28px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 5px;
+  .status-item {
+    flex-grow: 1;
+    border-right: 1px solid #fff;
+    height: 100%;
+    .header {
+      background-color: #bbb;
+      color: #2b2b2b;
+      padding: 0;
+      font-size: 1em;
+    }
+    .value {
+      color: #fff;
+      text-align: center;
+      // margin-top: 3px;
+      // margin-bottom: 3px
+    }
+  }
+  .status-item:last-child {
+    border-right: none;
+  }
+}
+
+table.stock-table {
+  flex-grow: 1;
+
+  thead {
+    background-color: #0B4477;
+    color: #ccc;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    overflow-y: scroll;
+
+    > tr {
+      display: flex;
+      justify-content: space-evenly;
+      >th {
+        flex-basis: 50px;
+      }
+    }
+  }
+  tbody {
+    display: block;
+    overflow-y: scroll;
+    flex: 1 1 auto;
+
+    tr:hover {
+      background-color: rgba(150,150,150,0.4);
+    }
+    tr:hover td {
+      background-color: transparent;
+    }
+
+    tr {
+      display: flex;
+      justify-content: space-evenly;
+      cursor: pointer;
+
+      >td {
+        flex-basis: 50px;
+      }
+    }
+  }
+  td, th {
+    text-align: right;
+  }
+}
+
+.button {
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 8px;
+  padding: 3px;
+  background: #1a1a1a;
+  text-decoration: none;
+  border: 0;
+  margin: 1px;
+  font-size: .9em;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #4a4a4a;
+  text-decoration: none;
+}
+
+.button-inv {
+  @extend .button;
+  background: #4a4a4a;
+}
+.button-inv:hover {
+  background: #6a6a6a;
+}

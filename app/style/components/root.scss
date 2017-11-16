@@ -1,0 +1,158 @@
+.app-container {
+  height: 100%;
+
+  .app-header {
+    background-color: #2b2b2b;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .game-container {
+    height: 100%;
+
+    .top-container {
+      flex-grow: 1.75;
+      flex-shrink: 1.75;
+
+      .stock-container {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: auto;
+        flex-basis: 250px;
+
+        .portfolio-container {
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: 0;
+          overflow-y: hidden;
+        }
+        .exchange-container {
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: 0;
+          overflow-y: hidden;
+        }
+      }
+
+      .chart-container {
+        flex-grow: 5;
+        flex-shrink: 0;
+      }
+    }
+    .bottom-container {
+      flex-grow: 1;
+      flex-shrink: 1;
+
+      .system-container {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 250px;
+
+        .system-parts-container {
+          padding-bottom: 5px;
+        }
+        .available-components-container {
+
+        }
+
+      }
+      .running-container {
+        flex-grow: 5;
+        flex-shrink: 0;
+
+        .running-status {
+          margin: 5px;
+          justify-content: space-between;
+
+          .running-title {
+            flex-grow: 1;
+            flex-shrink: 0;
+          }
+          span {
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 100px;
+          }
+          meter {
+            width: 150px;
+            height: 14px;
+            padding-left: 5px;
+          }
+        }
+
+        .component-column-container {
+          .component-column {
+            flex-grow: 0;
+            flex-shrink: 0;
+          }
+        }
+
+
+      }
+    }
+  }
+
+  //-----------------------------------------
+  // Components
+  //-----------------------------------------
+  .system-component {
+    margin: 5px;
+    border: 1px solid grey;
+    font-size: 10px;
+    text-align: left;
+
+    .section-header {
+      justify-content: space-between;
+      .component-name {
+        flex-grow: 1;
+        text-align: left;
+        line-height: 14px;
+        padding-left: 4px;
+      }
+      .component-controls {
+        flex-grow: 1;
+        text-align: right;
+      }
+    }
+    .component-details {
+      padding: 4px;
+
+    }
+    .component-usage {
+      background-color:#444;
+      color: #eee;
+      padding: 2px;
+
+      .component-usage-title {
+        font-weight: bold;
+        flex-grow: 1;
+      }
+      .component-usage-cpu {
+        flex-grow: 1;
+      }
+      .component-usage-mem {
+        flex-grow: 1;
+      }
+      .component-usage-running {
+        flex-grow: 1;
+        text-align: right;
+      }
+      .running {
+        color: #52a55d;
+      }
+      .overload {
+        color: #d4706a;
+      }
+      .not-running {
+        color: #bbb
+      }
+      .usage-value {
+        background-color: #52a55d;
+        padding: 2px;
+      }
+    }
+  }
+}

@@ -31,15 +31,16 @@ export default class RunningModules extends React.Component {
 
       columns.push(
         <div key='column1'
-             style={{ width: '33%', display: 'inline-block' }}>
+             className='component-column'>
           { moduleElement }
         </div>
       )
     });
     return (
-      <div style={RunningModulesStyle}>
+      <div className='flex-row-container component-column-container'>
         { columns }
       </div>
+
     )
   }
 }

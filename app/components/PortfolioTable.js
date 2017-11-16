@@ -1,10 +1,6 @@
 import React from 'react';
 import PortfolioRow from './PortfolioRow';
 
-const PortfolioTableStyle = {
-
-};
-
 export default class PortfolioTable extends React.Component {
   constructor(props) {
     super(props);
@@ -28,13 +24,16 @@ export default class PortfolioTable extends React.Component {
     });
 
     return (
-      <div>
-        <h4 className="header">My Portfolio</h4>
-        <table style={PortfolioTableStyle}>
-          <thead>
+
+      <div className='flex-col-container portfolio-container'>
+        <div className='section-header'>
+          My Portfolio
+        </div>
+        <table className='flex-col-container stock-table'>
+          <thead className='section-header'>
           <tr>
-            <th>Smb</th>
-            <th>$</th>
+            <th>Symb</th>
+            <th>Price</th>
             <th>Change</th>
             <th>Vol</th>
             <th>#</th>

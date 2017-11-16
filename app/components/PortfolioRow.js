@@ -33,12 +33,12 @@ export default class PortfolioRow extends React.Component {
 
     return (
       <tr onClick={this.handleStockClick} style={PortfolioRowStyle}>
-        <td style={PortfolioDataStyle}>{position.stock.symbol}</td>
-        <td style={PortfolioDataStyle}>${position.stock.price.toFixed(2)}</td>
-        <td style={PortfolioDataStyle}>${position.stock.change.toFixed(2)}</td>
-        <td style={PortfolioDataStyle}>{position.stock.volume}</td>
-        <td style={PortfolioDataStyle}>{position.shares}</td>
-        <td style={PortfolioDataStyle}>${position.value.toFixed(2)}</td>
+        <td>{position.stock.symbol}</td>
+        <td>${position.stock.price.toFixed(2)}</td>
+        <td>${position.stock.change.toFixed(2)}</td>
+        <td>{position.stock.volume}</td>
+        <td>{position.shares}</td>
+        <td>${position.value.toFixed(2)}</td>
       </tr>)
   }
 }

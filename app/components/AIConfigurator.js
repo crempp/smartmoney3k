@@ -19,7 +19,7 @@ export default class AIConfigurator extends React.Component {
 
   render() {
     return (
-      <div style={AIConfiguratorStyle}>
+      <div className='available-components-container'>
         <TrailingAction onUpdate={this.handleComponentPurchaseClick} />
       </div>
     )

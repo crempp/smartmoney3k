@@ -11,62 +11,7 @@ import SystemConfigurator from '../components/SystemConfigurator'
 import AIConfigurator from '../components/AIConfigurator';
 import RunningModules from '../components/RunningModules';
 
-const row1Size = {
-  width: '100%',
-  height: '400px',
-}
-
-const PageContainer = {
-  width: '1000px',
-  height: '100%',
-  margin: '0px auto',
-  backgroundColor: 'white',
-};
-const TopContainer = {
-  width: '100%',
-  height: '400px',
-  overflow: 'hidden',
-};
-const BottomContainer = {
-  width: '100%',
-  height: '250px',
-  overflow: 'hidden',
-}
-const LeftTopContainer = {
-  width: '260px',
-  height: '100%',
-  display: 'inline-block',
-  verticalAlign: 'top',
-  fontSize: '11px',
-};
-const RightTopContainer = {
-  width: '740px',
-  height: '100%',
-  display: 'inline-block',
-  verticalAlign: 'top',
-};
-const LeftBottomContainer = {
-  width: '260px',
-  height: '100%',
-  display: 'inline-block',
-  verticalAlign: 'top',
-  fontSize: '11px',
-}
-const RightBottomContainer = {
-  width: '738px',
-  height: '100%',
-  display: 'inline-block',
-  verticalAlign: 'top',
-  // backgroundColor: 'grey',
-  border: '1px black solid',
-}
-const ScrollableStockData = {
-  width: '100%',
-  height: '190px',
-  margin: '0',
-  padding: '0',
-  overflow: 'auto',
-};
+import '../style/components/root.scss';
 
 export default class Root extends React.Component {
 
@@ -125,54 +70,47 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <h1 className='header'>Project SG</h1>
-        </div>
+      <div className='flex-col-container app-container'>
+        <header className='app-header'>Smart Money 3000</header>
 
-        <div style={PageContainer}>
-          <div style={TopContainer}>
-            <div style={LeftTopContainer}>
-              <div>
+        <div className='flex-col-container game-container'>
+
+          <div className='flex-row-container top-container'>
+            <div className='flex-col-container stock-container'>
+              <div className='status-container'>
                 <Clock time={ this.state.time }/>
                 <PortfolioValue portfolio={ this.state.portfolio } />
                 <CashDisplay cash={ this.state.cash } />
               </div>
-              <div style={ScrollableStockData}>
-                <PortfolioTable onUpdate={ this.handleStockClick }
-                                portfolio={ this.state.portfolio } />
-              </div>
-              <div style={ScrollableStockData}>
-                <StockTable onUpdate={ this.handleStockClick }
-                            exchange={ this.state.exchanges[0] } />
-              </div>
+              <PortfolioTable onUpdate={ this.handleStockClick }
+                              portfolio={ this.state.portfolio } />
+              <StockTable onUpdate={ this.handleStockClick }
+                          exchange={ this.state.exchanges[0] } />
             </div>
-            <div style={RightTopContainer}>
-              <Chart chart={ this.state.chart }
-                     width={740}
-                     height={400}/>
-            </div>
-          </div>
 
-          <div style={BottomContainer}>
-            <div style={LeftBottomContainer}>
-              <Controls running={ this.state.running }
-                        onUpdate={ this.onSimulationUpdate } />
-              <hr/>
+            <Chart chart={ this.state.chart }
+                   width={740}
+                   height={400}/>
+          </div>
+          <div className='flex-row-container bottom-container'>
+            <div className='flex-col-container system-container'>
+
               <SystemConfigurator gamestate={ this.state }
                                   onUpdate={ this.onSystemUpdate } />
-              <hr/>
               <AIConfigurator gamestate={ this.state }
                               onUpdate={ this.onAIModuleUpdate } />
             </div>
-            <div style={RightBottomContainer}>
-              <RunningModules gamestate={ this.state }
-                              modules = { this.state.system.modules }
-                              onUpdate={ this.onRunningModuleUpdate }>
-              </RunningModules>
+
+            <div className='running-container'>
+              <Controls running={ this.state.running }
+                        onUpdate={ this.onSimulationUpdate } />
+              <div className='flex-row-container component-column-container'>
+                <RunningModules gamestate={ this.state }
+                                modules = { this.state.system.modules }
+                                onUpdate={ this.onRunningModuleUpdate } />
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     );

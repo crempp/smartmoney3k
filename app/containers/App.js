@@ -1,10 +1,6 @@
 import React from 'react';
 import Root from './Root';
-
-const AppStyle = {
-  height: '100%',
-  width: '100%',
-}
+import '../style/components/app.scss';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,9 +9,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div style={AppStyle}>
-        <Root/>
-      </div>
+      <Root/>
     );
   }
 }

@@ -2,13 +2,12 @@ import React from 'react';
 
 export default class CashDisplay extends React.Component {
   render() {
-    let CashDisplayStyle = {
-      paddingLeft: "5px",
-      paddingRight: "5px",
-    };
 
     return (
-      <span style={CashDisplayStyle}>CASH: ${this.props.cash.toFixed(2)}</span>
+      <div className='status-item'>
+        <div className='header'>CASH:</div>
+        <div className='value'>${this.props.cash.toFixed(2)}</div>
+      </div>
     )
   }
 }
