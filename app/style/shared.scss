@@ -58,6 +58,7 @@
 }
 
 table.stock-table {
+  font-size: 10px;
   flex-grow: 1;
 
   thead {
@@ -129,4 +130,64 @@ table.stock-table {
 }
 .button-inv:hover {
   background: #6a6a6a;
+}
+
+.greenFadeInAnimated{
+  background-image:none !important;
+  -webkit-animation: greenFadeIn 800ms ease-in-out;
+  -moz-animation: greenFadeIn 800ms ease-in-out;
+  -o-animation: greenFadeIn 800ms ease-in-out;
+  animation: greenFadeIn 800ms ease-in-out;
+  //background-color: rgba(16, 99, 27, 1);
+}
+
+@-webkit-keyframes greenFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(16, 99, 27, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@-moz-keyframes greenFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(16, 99, 27, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@-o-keyframes greenFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(16, 99, 27, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@keyframes greenFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(16, 99, 27, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+
+.redFadeInAnimated{
+  background-image:none !important;
+  -webkit-animation: redFadeIn 800ms ease-in-out;
+  -moz-animation: redFadeIn 800ms ease-in-out;
+  -o-animation: redFadeIn 800ms ease-in-out;
+  animation: redFadeIn 800ms ease-in-out;
+  //background-color: rgba(128, 27, 21, 1);
+}
+
+@-webkit-keyframes redFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(128, 27, 21, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@-moz-keyframes redFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(128, 27, 21, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@-o-keyframes redFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(128, 27, 21, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
+}
+@keyframes redFadeIn {
+  0%   { background-color: rgba(187, 187, 187, 0); }
+  50%  { background-color: rgba(128, 27, 21, 1); }
+  100%   { background-color: rgba(187, 187, 187, 0); }
 }

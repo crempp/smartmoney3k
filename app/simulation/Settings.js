@@ -4,6 +4,8 @@ export const chartTimeSliceSeconds = 5;
 
 // Gameplay Mechanics
 // This can help https://www.desmos.com/calculator
+export const minStockCount = 3;
+export const maxStockCount = 5;
 export const initialCash = 1000;
 export const initialCPUCount = 1;
 export const initialMemCount = 1;

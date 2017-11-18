@@ -28,6 +28,17 @@
           flex-shrink: 1;
           flex-basis: 0;
           overflow-y: hidden;
+
+          .stock-table {
+            th:nth-of-type(1),
+            td:nth-of-type(1){
+              flex-basis: 15px;
+            }
+            th:nth-of-type(5),
+            td:nth-of-type(5) {
+              flex-basis: 15px;
+            }
+          }
         }
         .exchange-container {
           flex-grow: 1;
@@ -43,6 +54,7 @@
       }
     }
     .bottom-container {
+      margin-top: 15px;
       flex-grow: 1;
       flex-shrink: 1;
 

@@ -16,6 +16,8 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
 ** √ Integrate candlebar chart
 ** √ Show game status (time/ticks, value, cash)
 ** √ Selecting a stock loads that stock in the chart
+* Do a UI pass
+** Flexbox?
 
 * √ Simulation loop
 ** √ Basic random walk value updates for stocks
@@ -32,11 +34,11 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
 
 v0.1.1
 * Switch charts to https://github.com/rrag/react-stockcharts-examples2
-* Do a UI pass
-** Flexbox?
 * Better TrailingAction
 ** Number of shares
 * Disable/Sell modules
+* Cash/Value graphs
+* Backup seed for when offline
 
 **v0.2**
 
@@ -64,6 +66,7 @@ Performance / Code cleanup
 * Reduce memory usage
 * Remove chancejs and write own random functions
 * Better CSS system (Radium?)
+* Stock and Portfolio tables are almost the same, maybe generalize them?
 
 Ready for 1.0
 * Docker container
