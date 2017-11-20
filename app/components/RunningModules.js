@@ -11,31 +11,41 @@ export default class RunningModules extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.handleComponentPurchaseClick = this.handleComponentPurchaseClick.bind(this);
+    this.handleRunningModuleUpdate = this.handleRunningModuleUpdate.bind(this);
   }
 
-  // handleComponentPurchaseClick(data) {
-  //   this.props.onUpdate(data);
-  // }
+  handleRunningModuleUpdate(data) {
+    this.props.onUpdate(data);
+  }
 
   render() {
 
-    const columns = [];
+    let columns = [];
+    let modules = [];
+    let numColumns = 3;
+    let perColumn = 4;
+
     this.props.modules.forEach((module) => {
-      let moduleElement = null
 
       if (module.name === 'TrailingAction') {
-        moduleElement = <TrailingAction key={module.id}
-                                        instance={module} />;
+        modules.push(<TrailingAction key={module.id}
+                                     instance={module}
+                                     onUpdate={this.handleRunningModuleUpdate} />
+        );
       }
+    });
 
+    for (let i = 0; i < numColumns; i++) {
+      let columnKey = 'column' + i;
+      let thisColModules = modules.slice(i * perColumn, (i * perColumn) + perColumn);
       columns.push(
-        <div key='column1'
+        <div key={columnKey}
              className='component-column'>
-          { moduleElement }
+          { thisColModules }
         </div>
       )
-    });
+    }
+
     return (
       <div className='flex-row-container component-column-container'>
         { columns }

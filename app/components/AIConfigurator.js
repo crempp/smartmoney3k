@@ -20,7 +20,8 @@ export default class AIConfigurator extends React.Component {
   render() {
     return (
       <div className='available-components-container'>
-        <TrailingAction onUpdate={this.handleComponentPurchaseClick} />
+        <TrailingAction
+          onUpdate={this.handleComponentPurchaseClick} />
       </div>
     )
   }

@@ -39,6 +39,10 @@ v0.1.1
 * Disable/Sell modules
 * Cash/Value graphs
 * Backup seed for when offline
+* Move CSS out of root.scss into module sass files
+* Console for AI modules that lists what they're doing
+* system running spinner
+
 
 **v0.2**
 
@@ -67,9 +71,15 @@ Performance / Code cleanup
 * Remove chancejs and write own random functions
 * Better CSS system (Radium?)
 * Stock and Portfolio tables are almost the same, maybe generalize them?
+* Generalize modules?
+* Lint
+* Tests
 
 Ready for 1.0
 * Docker container
 
 Maybe?
 * Order book and depth chart
+
+Production
+* Dockerize

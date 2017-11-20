@@ -6,7 +6,7 @@ export const chartTimeSliceSeconds = 5;
 // This can help https://www.desmos.com/calculator
 export const minStockCount = 3;
 export const maxStockCount = 5;
-export const initialCash = 1000;
+export const initialCash = 2000;
 export const initialCPUCount = 1;
 export const initialMemCount = 1;
 export function cpuCostIncrement(count) {

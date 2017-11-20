@@ -12,27 +12,21 @@ export default class PortfolioRow extends React.Component {
   }
 
   render() {
-    let PortfolioRowStyle = {
-      cursor: "pointer",
-    };
-    let PortfolioDataStyle = {
-      backgroundColor: "#ffffff",
-      color: "#000000",
-    };
-
     const position = this.props.position;
 
+    let classname = '';
+
     if (position.stock.change > 0) {
-      PortfolioDataStyle.backgroundColor = "#499a50";
-      PortfolioDataStyle.color = "#ffffff";
+      classname = 'increase';
     }
     else if (position.stock.change < 0) {
-      PortfolioDataStyle.backgroundColor = "#ED4337";
-      PortfolioDataStyle.color = "#ffffff";
+      classname = 'decrease';
     }
 
     return (
-      <tr onClick={this.handleStockClick} style={PortfolioRowStyle}>
+      <tr ref='tr'
+          className={classname}
+          onClick={this.handleStockClick} >
         <td>{position.stock.symbol}</td>
         <td>${position.stock.price.toFixed(2)}</td>
         <td>${position.stock.change.toFixed(2)}</td>

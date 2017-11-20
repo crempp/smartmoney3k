@@ -57,6 +57,7 @@
       margin-top: 15px;
       flex-grow: 1;
       flex-shrink: 1;
+      flex-basis: 150px;
 
       .system-container {
         flex-grow: 0;
@@ -151,6 +152,7 @@
       .component-usage-running {
         flex-grow: 1;
         text-align: right;
+        cursor: pointer;
       }
       .running {
         color: #52a55d;
@@ -162,7 +164,6 @@
         color: #bbb
       }
       .usage-value {
-        background-color: #52a55d;
         padding: 2px;
       }
     }

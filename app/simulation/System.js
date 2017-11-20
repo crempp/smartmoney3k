@@ -36,7 +36,12 @@ export default class System {
       // percentChange comes as a percent, convert to decimal
       let percentChange = data.percentChange / 100.0;
       this.modules.push(
-        new TrailingAction(data.action, percentChange, data.trailingSeconds)
+        new TrailingAction(
+          this.state,
+          data.action,
+          data.direction,
+          percentChange,
+          data.trailingSeconds)
       )
     }
   }
@@ -46,9 +51,9 @@ export default class System {
   //   this.nextMemCost = this.nextMemCostFunction();
   // }
 
-  run(exhange, actionCB) {
+  run(actionCB) {
     for (let module of this.modules) {
-      module.run(exhange, actionCB);
+      module.run(actionCB);
     }
   }
 };

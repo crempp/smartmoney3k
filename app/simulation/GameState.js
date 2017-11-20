@@ -16,14 +16,7 @@ export default class GameState {
     this.portfolio = new Portfolio(this);
     this.cash = initialCash;
     this.system = new System(this);
-
-    // TEMP
-    // this.portfolio.buyPosition(this.exchanges[0].stocks[0], 67, this.time);
-    // this.portfolio.buyPosition(this.exchanges[0].stocks[5], 560, this.time);
-    // this.portfolio.buyPosition(this.exchanges[0].stocks[10], 30, this.time);
-
     this.chart = new Chart(null);
-    // this.chart.setStock(this.portfolio.positions[0].stock);
   }
 
   purchaseCPU(count, costValidation) {
@@ -65,6 +58,18 @@ export default class GameState {
       this.system.addModule(data);
     }
     this.triggerGameStateChangeCB(this.getStateObject());
+  }
+
+  updateRunningModule(id, data) {
+    for (let module of this.system.modules) {
+      if (module.id === id) {
+        module.action = data.action;
+        module.direction = data.direction;
+        module.enabled = data.enabled;
+        module.percentChange = parseInt(data.percentChange);
+        module.trailingSeconds = parseInt(data.trailingSeconds);
+      }
+    }
   }
 
   marketAction(action) {
@@ -129,7 +134,7 @@ export default class GameState {
     }
 
     // Run system
-    this.system.run(this.exchanges[0], this.marketAction.bind(this));
+    this.system.run(this.marketAction.bind(this));
 
     // Force a React state update
     this.triggerGameStateChangeCB(this.getStateObject());

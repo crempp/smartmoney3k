@@ -27,7 +27,7 @@ export default class Root extends React.Component {
     this.onAIModuleUpdate = this.onAIModuleUpdate.bind(this);
     this.onSimulationUpdate = this.onSimulationUpdate.bind(this);
     this.handleStockClick = this.handleStockClick.bind(this);
-    this.onRunningModuleUpdate = this.onRunningModuleUpdate.bind(this);
+    this.handleRunningModuleUpdate = this.handleRunningModuleUpdate.bind(this);
     // this.gameState.startSimulation();
   }
 
@@ -53,15 +53,14 @@ export default class Root extends React.Component {
 
   onSimulationUpdate(data) {
     // console.debug('onSimulationUpdate');
-    // Handle play/pause
     if (data.hasOwnProperty('isPaused')) {
       if (data.isPaused) this.gameState.startSimulation();
       else this.gameState.stopSimulation();
     }
   }
 
-  onRunningModuleUpdate(data) {
-
+  handleRunningModuleUpdate(data) {
+    this.gameState.updateRunningModule(data.id, data);
   }
 
   handleStockClick(stock) {
@@ -107,7 +106,7 @@ export default class Root extends React.Component {
               <div className='flex-row-container component-column-container'>
                 <RunningModules gamestate={ this.state }
                                 modules = { this.state.system.modules }
-                                onUpdate={ this.onRunningModuleUpdate } />
+                                onUpdate={ this.handleRunningModuleUpdate } />
               </div>
             </div>
           </div>
