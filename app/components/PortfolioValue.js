@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/components/PortfolioValue.scss';
 
 export default class PortfolioValue extends React.Component {
   render() {
@@ -24,8 +25,8 @@ export default class PortfolioValue extends React.Component {
     return (
       <div className='status-item'>
         <div className='header'>VALUE:</div>
-      <div className='value'>${value.toFixed(2)}</div>
-    </div>
+        <div className='value'>${value.toFixed(2)}</div>
+      </div>
     )
   }
 }

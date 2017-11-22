@@ -3,14 +3,7 @@ import { timeParse, scaleTime, scaleLinear, select, timeFormat } from 'd3';
 import { scaleDiscontinuous, discontinuitySkipWeekends,
   chartSvgCartesian, extentDate, extentLinear } from 'd3fc';
 import { seriesSvgCandlestick, autoBandwidth } from 'd3fc-series';
-import '../style/chart.css';
-
-const ChartStyle = {
-  width: "100%",
-  height: "100%",
-  margin: "0",
-  padding: "0",
-};
+import '../style/components/Chart.scss';
 
 export default class Graph extends Component {
   constructor(props){
@@ -81,6 +74,6 @@ export default class Graph extends Component {
 
 
   render() {
-    return <div className='chart-container'>Chart</div>
+    return <div>Chart is malfunctioning :(</div>
   }
 }

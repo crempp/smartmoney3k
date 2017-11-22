@@ -1,0 +1,23 @@
+.status-container {
+  display: flex;
+
+  .status-item {
+    flex-grow: 1;
+
+    .header {
+      background-color: #bbb;
+      color: #2b2b2b;
+      padding: 0;
+      font-size: 1em;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .value {
+      color: #fff;
+      text-align: center;
+      font-size: 1.2em;
+    }
+  }
+}

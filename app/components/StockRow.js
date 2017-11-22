@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/components/StockRow.scss';
 
 export default class StockRow extends React.Component {
   constructor(props) {

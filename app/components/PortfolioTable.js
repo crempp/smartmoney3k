@@ -1,5 +1,6 @@
 import React from 'react';
 import PortfolioRow from './PortfolioRow';
+import '../style/components/PortfolioTable.scss';
 
 export default class PortfolioTable extends React.Component {
   constructor(props) {

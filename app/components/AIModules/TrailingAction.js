@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { moduleAttributes } from '../../simulation/Settings';
+import '../../style/components/AIModules/TrailingAction.scss'
 
 export default class TrailingAction extends React.Component {
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import TrailingAction from './AIModules/TrailingAction';
-
-const RunningModulesStyle = {
-  margin: '3px',
-  textAlign: 'left',
-};
+import '../style/components/RunningModules.scss';
 
 export default class RunningModules extends React.Component {
 
@@ -50,7 +46,6 @@ export default class RunningModules extends React.Component {
       <div className='flex-row-container component-column-container'>
         { columns }
       </div>
-
     )
   }
 }

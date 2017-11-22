@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/components/PortfolioRow.scss';
 
 export default class PortfolioRow extends React.Component {
   constructor(props) {

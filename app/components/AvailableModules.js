@@ -1,11 +1,8 @@
 import React from 'react';
 import TrailingAction from './AIModules/TrailingAction';
+import '../style/components/AvailableModules.scss';
 
-const AIConfiguratorStyle = {
-  margin: '3px',
-};
-
-export default class AIConfigurator extends React.Component {
+export default class AvailableModules extends React.Component {
 
   constructor(props) {
     super(props);

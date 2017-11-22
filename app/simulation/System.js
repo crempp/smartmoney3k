@@ -10,6 +10,8 @@ export default class System {
     this.nextCPUCost = this.nextCPUCosFunction();
     this.nextMemCost = this.nextMemCostFunction();
     this.modules = [];
+    this.usedCPU = 0;
+    this.usedMem = 0;
   }
 
   purchaseCPU(count) {
@@ -52,8 +54,17 @@ export default class System {
   // }
 
   run(actionCB) {
+    this.usedCPU = 0;
+    this.usedMem = 0;
+
     for (let module of this.modules) {
-      module.run(actionCB);
+      if (module.enabled) {
+        module.run(actionCB);
+        this.usedCPU += module.cpuUsed;
+        this.usedMem += module.memUsed;
+      }
     }
+
+    console.log("CPU " + this.usedCPU + " MEM " + this.usedMem);
   }
 };

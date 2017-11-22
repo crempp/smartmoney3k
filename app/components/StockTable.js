@@ -1,9 +1,6 @@
 import React from 'react';
 import StockRow from './StockRow';
-
-const StockTableStyle = {
-
-};
+import '../style/components/StockTable.scss';
 
 export default class StockTable extends React.Component {
   constructor(props) {
