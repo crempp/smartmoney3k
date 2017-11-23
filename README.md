@@ -55,6 +55,9 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
   * System won't run if overloaded
   * Sell modules
   * Console for AI modules that lists what they're doing
+  
+Performance
+  * √ Better CSS system
 
 
 **v0.2**
@@ -80,11 +83,12 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
 * Performance / Code cleanup
   * Reduce memory usage
   * Remove chancejs and write own random functions
-  * Better CSS system (Radium?)
+  * Remove lodash
   * Stock and Portfolio tables are almost the same, maybe generalize them?
   * Generalize modules?
   * Lint
   * Tests
+  * Environment handling in webpack
 
 **v0.3**
 
