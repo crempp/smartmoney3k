@@ -1,6 +1,5 @@
 import { chunk } from 'lodash'
 import { chartTimeSliceSeconds } from './Settings';
-import { time2str } from '../utils/convert'
 
 export default class Chart {
   constructor(state) {
@@ -12,6 +11,7 @@ export default class Chart {
 
   setStock (stock) {
     this.stock = stock;
+    this.updateData();
   }
 
   updateData () {

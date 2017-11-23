@@ -60,6 +60,18 @@ export default class GameState {
     this.triggerGameStateChangeCB(this.getStateObject());
   }
 
+  setStock (stock) {
+    this.chart.setStock(stock);
+    this.triggerGameStateChangeCB(this.getStateObject());
+  }
+
+  getStock(symbol) {
+    for (let s of this.exchanges[0].stocks) {
+      if (s.symbol === symbol) return s;
+    }
+    return null;
+  }
+
   updateRunningModule(id, data) {
     for (let module of this.system.modules) {
       if (module.id === id) {
