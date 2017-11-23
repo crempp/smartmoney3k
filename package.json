@@ -8,7 +8,8 @@
     "build": "webpack",
     "start": "node server.js",
     "start-dev": "node server.js",
-    "serve": "./node_modules/http-server/bin/http-server . -p 8000 -d False -i False"
+    "serve": "./node_modules/http-server/bin/http-server . -p 8000 -d False -i False",
+    "postinstall": "npm run build"
   },
   "directories": {
     "doc": "doc"
