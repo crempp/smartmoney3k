@@ -4,6 +4,8 @@ var expressWinston = require('express-winston');
 
 var app = express();
 
+var port = process.env.PORT || 8080
+
 app.use(expressWinston.logger({
   transports: [
     new winston.transports.Console({
@@ -20,8 +22,7 @@ app.use(expressWinston.logger({
 
 app.use(express.static('build'))
 
-var server = app.listen(80,function(){
-  var port = server.address().port;
+var server = app.listen(port, function(){
   console.log('Express server running on port ' + port);
 });
 
