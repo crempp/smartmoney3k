@@ -20,7 +20,7 @@ app.use(expressWinston.logger({
   ignoreRoute: function (req, res) { return false; } // optional: allows to skip some log messages based on request and/or response
 }));
 
-app.use(express.static(_dirname + '/build'))
+app.use(express.static(__dirname + '/build'))
 
 var server = app.listen(port, function(){
   console.log('Express server running on port ' + port);
