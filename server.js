@@ -20,7 +20,7 @@ app.use(expressWinston.logger({
 
 app.use(express.static('build'))
 
-var server = app.listen(8080,function(){
+var server = app.listen(80,function(){
   var port = server.address().port;
   console.log('Express server running on port ' + port);
 });
