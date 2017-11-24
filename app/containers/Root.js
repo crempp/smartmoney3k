@@ -16,6 +16,9 @@ export default class Root extends React.Component {
 
     this.gameState = new GameState(this.triggerGameStateChange.bind(this));
 
+    // Hang gameState on window so I can access it for debugging
+    window.gameState = this.gameState;
+
     this.state = this.gameState.getStateObject();
 
     this.triggerGameStateChange = this.triggerGameStateChange.bind(this);
@@ -77,7 +80,7 @@ export default class Root extends React.Component {
                           exchange={ this.state.exchanges[0] } />
             </div>
             <div className='flex-col-container top-right-container dark'>
-              <StockChart chart={ this.state.chart }
+              <StockChart chart={ this.gameState.chart }
                      width={740}
                      height={400}/>
             </div>

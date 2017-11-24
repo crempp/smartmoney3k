@@ -1,5 +1,6 @@
 import Stock from './Stock'
 import Exchange from './Exchange'
+import { initialMinStockValue, initialMaxStockValue } from './Settings';
 
 export function generateExchanges() {
   let exchanges = [];
@@ -32,7 +33,7 @@ export function generateStocks(count = 1) {
 
     let data = {
       "symbol": symbol,
-      "price": chance.floating({min: 0, max: 1000, fixed: 2})
+      "price": chance.floating({min: initialMinStockValue, max: initialMaxStockValue, fixed: 2})
     };
 
     stocks.push(new Stock(data))

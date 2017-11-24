@@ -59,6 +59,7 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
   
 Performance
   * √ Better CSS system
+  * Can I pass the actual gamestate object rather than the serialized version?
 
 
 **v0.2**
