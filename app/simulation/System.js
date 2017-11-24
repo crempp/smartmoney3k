@@ -64,7 +64,5 @@ export default class System {
         this.usedMem += module.memUsed;
       }
     }
-
-    console.log("CPU " + this.usedCPU + " MEM " + this.usedMem);
   }
 };

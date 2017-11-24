@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import GameState from '../simulation/GameState'
 import StockTable from '../components/StockTable'
 import PortfolioTable from '../components/PortfolioTable'
-import Chart from '../components/Chart'
+import StockChart from '../components/StockChart'
 import StatusContainer from './StatusContainer'
 import Controls from '../components/Controls';
 import AvailableModules from '../components/AvailableModules';
@@ -15,6 +15,9 @@ export default class Root extends React.Component {
     super(props);
 
     this.gameState = new GameState(this.triggerGameStateChange.bind(this));
+
+    // Hang gameState on window so I can access it for debugging
+    window.gameState = this.gameState;
 
     this.state = this.gameState.getStateObject();
 
@@ -60,7 +63,7 @@ export default class Root extends React.Component {
   }
 
   handleStockClick(stock) {
-    this.gameState.chart.setStock(stock);
+    this.gameState.setStock(this.gameState.getStock(stock.symbol));
   }
 
   render() {
@@ -76,8 +79,8 @@ export default class Root extends React.Component {
               <StockTable onUpdate={ this.handleStockClick }
                           exchange={ this.state.exchanges[0] } />
             </div>
-            <div className='flex-col-container top-right-container'>
-              <Chart chart={ this.state.chart }
+            <div className='flex-col-container top-right-container dark'>
+              <StockChart chart={ this.gameState.chart }
                      width={740}
                      height={400}/>
             </div>

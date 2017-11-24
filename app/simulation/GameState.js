@@ -1,4 +1,4 @@
-import { simulationTickMs, initialCash } from './Settings';
+import { simulationTickMs, initialCash, backfillTicks } from './Settings';
 import { generateExchanges } from './Generators';
 import Portfolio from './Portfolio';
 import Chart from './Chart';
@@ -10,13 +10,18 @@ export default class GameState {
     this.triggerGameStateChangeCB = triggerGameStateChangeCB;
 
     this.running = false;
-    this.time = Date.now(); // Milliseconds
+    this.time = 0; // Milliseconds
     this.tick = 0;
     this.exchanges = generateExchanges();
     this.portfolio = new Portfolio(this);
     this.cash = initialCash;
     this.system = new System(this);
     this.chart = new Chart(null);
+
+    this.backfillStockData();
+
+    // Select first stock for chart initially (don't trigger state change).
+    this.chart.setStock(this.exchanges[0].stocks[0]);
   }
 
   purchaseCPU(count, costValidation) {
@@ -58,6 +63,18 @@ export default class GameState {
       this.system.addModule(data);
     }
     this.triggerGameStateChangeCB(this.getStateObject());
+  }
+
+  setStock (stock) {
+    this.chart.setStock(stock);
+    this.triggerGameStateChangeCB(this.getStateObject());
+  }
+
+  getStock(symbol) {
+    for (let s of this.exchanges[0].stocks) {
+      if (s.symbol === symbol) return s;
+    }
+    return null;
   }
 
   updateRunningModule(id, data) {
@@ -111,12 +128,27 @@ export default class GameState {
     this.triggerGameStateChangeCB(this.getStateObject());
   }
 
+  backfillStockData () {
+    for (let i = 0; i < backfillTicks; i++) {
+      // Update time
+      this.tick++;
+      this.time += 1000; // Milliseconds
+
+      // Update stock values
+      for (let exchange of this.exchanges) {
+        for (let stock of exchange.stocks) {
+          stock.update(this.time);
+        }
+      }
+    }
+  }
+
   simulateTick () {
     // console.debug('tick');
 
     // Update time
     this.tick++;
-    this.time = Date.now(); // Milliseconds
+    this.time += 1000; // Milliseconds
 
     // Update stock values
     for (let exchange of this.exchanges) {

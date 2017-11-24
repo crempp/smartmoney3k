@@ -44,6 +44,7 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
 * UI
   * Switch charts to https://github.com/rrag/react-stockcharts-examples2
   * Cash/Value graphs
+  * Value change animations
 
 * Simulation
   * ...
@@ -58,6 +59,7 @@ Basic functionality. Get basic layout and a simple version of game mechanic in p
   
 Performance
   * √ Better CSS system
+  * Can I pass the actual gamestate object rather than the serialized version?
 
 
 **v0.2**
@@ -98,3 +100,14 @@ Performance
 **v1.0**
 
 * Docker container?
+
+
+
+"d3-dsv": "1.0.5",
+"d3-format": "^1.2.0",
+"d3-scale": "1.0.6",
+"d3-time-format": "2.0.5",
+"prop-types": "15.5.10",
+"react": "15.5.3",
+"react-bootstrap": "0.31.3",
+"react-dom": "15.5.3",

@@ -1,3 +1,5 @@
+import { minStockValue } from './Settings';
+
 export default class Stock {
   constructor(data) {
     this.symbol = data.symbol;
@@ -8,17 +10,31 @@ export default class Stock {
     this.history = [];
   }
 
+  randomWalkVolume (currentVol) {
+    let min = currentVol - 100
+    let max = currentVol + 100
+
+    return Math.max(Math.round(Math.random() * (max - min) + min), 0);
+  }
+
+  randomWalkPrice (currentPrice) {
+    let min = currentPrice - 10
+    let max = currentPrice + 10
+
+    return Math.max(Math.random() * (max - min) + min, minStockValue);
+  }
+
   update (time) {
+    this.volume = this.randomWalkVolume(this.volume);
+
+    let oldPrice = this.price;
+    this.price = this.randomWalkPrice(this.price);
+    this.change = oldPrice - this.price;
+
     this.history.push({
-      time: time,
+      time: new Date(time),
       price: this.price,
       volume: this.volume
     });
-
-    this.volume = chance.integer({min: 0, max: 5000});
-
-    this.change = chance.floating({min: -50, max: 50, fixed: 2});
-    let newPrice = Math.max(0, this.price + this.change);
-    this.price = newPrice;
   }
 };
