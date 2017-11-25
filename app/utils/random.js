@@ -1,3 +1,11 @@
+// Constants
+const MAX_INT = 9007199254740992;
+const MIN_INT = -MAX_INT;
+const NUMBERS = '0123456789';
+const CHARS_LOWER = 'abcdefghijklmnopqrstuvwxyz';
+const CHARS_UPPER = CHARS_LOWER.toUpperCase();
+const HEX_POOL  = NUMBERS + "abcdef";
+
 export function uuid () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
@@ -47,4 +55,27 @@ export function gaussian(mean, stdev, forcePos) {
       return retval;
     return -retval;
   }
+}
+
+export function integer (min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export function float (min, max, fixed) {
+  max = max || MAX_INT / fixed;
+  min = min || -max;
+  fixed = fixed || 4;
+  fixed = Math.pow(10, fixed);
+
+  let num = integer(min * fixed, max * fixed);
+  let num_fixed = (num / fixed).toFixed(fixed);
+
+  return parseFloat(num_fixed);
+}
+
+export function stockSymbol() {
+  return "" +
+    CHARS_UPPER[Math.floor(Math.random() * CHARS_UPPER.length)] +
+    CHARS_UPPER[Math.floor(Math.random() * CHARS_UPPER.length)] +
+    CHARS_UPPER[Math.floor(Math.random() * CHARS_UPPER.length)];
 }
