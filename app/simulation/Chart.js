@@ -1,10 +1,9 @@
-import { chunk } from 'lodash'
+import { chunk } from '../utils/utils';
 import { chartTimeSliceSeconds } from './Settings';
 
 export default class Chart {
   constructor(state) {
     this.state = state;
-    this.timeSliceSeconds = chartTimeSliceSeconds;
     this.data = [];
     this.stock = null;
   }
@@ -17,7 +16,7 @@ export default class Chart {
   updateData () {
     if (this.stock) {
       let data = [];
-      let chunks = chunk(this.stock.history, this.timeSliceSeconds);
+      let chunks = chunk(this.stock.history, chartTimeSliceSeconds);
 
       chunks.forEach((c) => {
         let high = null;

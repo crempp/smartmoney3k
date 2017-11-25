@@ -29,7 +29,6 @@
     "express-winston": "^2.4.0",
     "html-webpack-plugin": "^2.30.1",
     "http-server": "^0.10.0",
-    "lodash": "^4.17.4",
     "node-sass": "^4.6.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
