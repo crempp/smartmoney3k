@@ -17,10 +17,23 @@ export function cpuCostIncrement(count) {
 export function memCostIncrement(count) {
   return count * 100.00 + (count * 400);
 }
-export const minStockValue = 0.05;
 export const initialMinStockValue = 10;
 export const initialMaxStockValue = 100;
 
+export const priceChangeMean = 0;
+export const priceChangeStdDev = 0.5;
+export const volumeChangeMean = 0;
+export const volumeChangeStdDev = 25;
+
+export const volumeDownwardResistancePoint = 25;
+export const volumeDownwardResistanceFactor = .2;
+export const volumeUpwarddResistancePoint = 5000;
+export const volumeUpwarddResistanceFactor = .2;
+
+export const priceDownwardResistancePoint = 5;
+export const priceDownwardResistanceFactor = .2;
+export const priceUpwarddResistancePoint = 500;
+export const priceUpwarddResistanceFactor = .2;
 
 // AI Modules
 export const moduleAttributes = {

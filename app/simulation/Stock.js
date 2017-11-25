@@ -1,4 +1,19 @@
-import { minStockValue } from './Settings';
+import {
+  priceChangeMean,
+  priceChangeStdDev,
+  volumeChangeMean,
+  volumeChangeStdDev,
+  volumeDownwardResistancePoint,
+  volumeDownwardResistanceFactor,
+  volumeUpwarddResistancePoint,
+  volumeUpwarddResistanceFactor,
+  priceDownwardResistancePoint,
+  priceDownwardResistanceFactor,
+  priceUpwarddResistancePoint,
+  priceUpwarddResistanceFactor,
+
+} from './Settings';
+import { gaussian } from '../utils/random';
 
 export default class Stock {
   constructor(data) {
@@ -11,17 +26,37 @@ export default class Stock {
   }
 
   randomWalkVolume (currentVol) {
-    let min = currentVol - 100
-    let max = currentVol + 100
+    let mean = volumeChangeMean;
+    let stdDev = volumeChangeStdDev
 
-    return Math.max(Math.round(Math.random() * (max - min) + min), 0);
+    // Apply downward/upward resistance to prevent unlimited boundries
+    if (currentVol <= volumeDownwardResistancePoint) {
+      mean += mean * volumeDownwardResistanceFactor;
+    }
+    else if (currentVol >= volumeUpwarddResistancePoint) {
+      mean -= mean * volumeUpwarddResistanceFactor;
+    }
+
+    let g = gaussian(mean, stdDev);
+    let gd = g();
+    return Math.max(Math.round(currentVol + gd), 0);
   }
 
   randomWalkPrice (currentPrice) {
-    let min = currentPrice - 10
-    let max = currentPrice + 10
+    let mean = priceChangeMean;
+    let stdDev = priceChangeStdDev;
 
-    return Math.max(Math.random() * (max - min) + min, minStockValue);
+    // Apply downward/upward resistance to prevent unlimited boundries
+    if (currentPrice <= priceDownwardResistancePoint) {
+      mean += mean * priceDownwardResistanceFactor;
+    }
+    else if (currentPrice >= priceUpwarddResistancePoint) {
+      mean -= mean * priceUpwarddResistanceFactor;
+    }
+
+    let g = gaussian(mean, stdDev);
+    let gd = g();
+    return currentPrice + gd;
   }
 
   update (time) {
