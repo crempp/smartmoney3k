@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes';
-import { omit } from 'lodash'
 
 const initialState = {
   stocks: [1],
@@ -36,12 +35,12 @@ export default function exchange(state = initialState, action) {
         },
       }
 
-    case types.DELETE_STOCK:
-      return {
-        ...state,
-        stocks: state.stocks.filter(id => id !== action.id),
-        stocksById: omit(state.stocksById, action.id)
-      }
+    // case types.DELETE_STOCK:
+    //   return {
+    //     ...state,
+    //     stocks: state.stocks.filter(id => id !== action.id),
+    //     stocksById: omit(state.stocksById, action.id)
+    //   }
 
     default:
       return state;
