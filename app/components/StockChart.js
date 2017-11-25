@@ -87,7 +87,7 @@ class StockChart extends React.Component {
             }}
             type="hybrid"
             // type="svg"
-            seriesName="MSFT"
+            seriesName="derp"
             data={data}
             xScale={xScale}
             xAccessor={xAccessor}
@@ -98,50 +98,6 @@ class StockChart extends React.Component {
             minPointsPerPxThreshold={0.07}
           >
             {/*
-              * Volume Chart
-              *
-              * Clipping bug:
-              *   https://github.com/rrag/react-stockcharts/issues/394
-              * */}
-            <Chart
-              id={2}
-              yExtents={d => d.volume}
-              height={volChartHeight}
-              origin={(w, h) => [0, h - volChartHeight]}
-            >
-              <YAxis
-                axisAt="left"
-                orient="left"
-                ticks={5}
-                tickFormat={format(".3s")}
-                tickStroke="#FFFFFF"
-                fontSize={10}/>
-              <MouseCoordinateY
-                at="left"
-                orient="left"
-                displayFormat={format(".4s")}/>
-              <BarSeries
-                yAccessor={d => d.volume}
-                fill={d => d.close > d.open ? green : red}/>
-              <CurrentCoordinate
-                yAccessor={d => d.volume} fill="#9B0A47"/>
-              <EdgeIndicator
-                itemType="first"
-                orient="left"
-                edgeAt="left"
-                yAccessor={d => d.volume}
-                displayFormat={format(".4s")}
-                fill="#4c4c4c"/>
-              <EdgeIndicator
-                itemType="last"
-                orient="right"
-                edgeAt="right"
-                yAccessor={d => d.volume}
-                displayFormat={format(".4s")}
-                fill="#4c4c4c"/>
-            </Chart>
-
-            {/*
               * Candlestick Chart
               *
               * */}
@@ -149,18 +105,14 @@ class StockChart extends React.Component {
               id={1}
               yExtents={[d => [d.high, d.low]]}
               padding={{top: 40, bottom: 20}}
+              height={Math.floor(height*0.6)}
             >
-              <XAxis
-                axisAt="bottom"
-                orient="bottom"
-                tickStroke="#FFFFFF"
-                fontSize={10} />
               <YAxis
                 axisAt="right"
                 orient="right"
                 ticks={5}
                 tickStroke="#FFFFFF"
-                fontSize={10}/>
+                fontSize={10} />
               <MouseCoordinateX
                 rectWidth={60}
                 at="bottom"
@@ -169,11 +121,9 @@ class StockChart extends React.Component {
               <MouseCoordinateY
                 at="right"
                 orient="right"
-                displayFormat={format(".2f")}/>
-
+                displayFormat={format(".2f")} />
               <CandlestickSeries
-                wickStroke="#bcbcbc"/>
-
+                wickStroke="#bcbcbc" />
               <EdgeIndicator
                 itemType="last"
                 orient="right"
@@ -192,8 +142,59 @@ class StockChart extends React.Component {
                   volume: d.volume
                 })} />
             </Chart>
+
+            {/*
+              * Volume Chart
+              *
+              * Clipping bug:
+              *   https://github.com/rrag/react-stockcharts/issues/394
+              * */}
+            <Chart
+              id={2}
+              yExtents={d => d.volume}
+              height={volChartHeight}
+              origin={(w, h) => [0, h - volChartHeight]}
+            >
+              <XAxis
+                axisAt="bottom"
+                orient="bottom"
+                tickStroke="#FFFFFF"
+                fontSize={10} />
+              <YAxis
+                axisAt="left"
+                orient="left"
+                ticks={5}
+                tickFormat={format(".3s")}
+                tickStroke="#FFFFFF"
+                fontSize={10} />
+              <MouseCoordinateY
+                at="left"
+                orient="left"
+                displayFormat={format(".4s")} />
+              <BarSeries
+                yAccessor={d => d.volume}
+                fill={d => d.close > d.open ? green : red} />
+              <CurrentCoordinate
+                yAccessor={d => d.volume} fill="#9B0A47" />
+              <EdgeIndicator
+                itemType="first"
+                orient="left"
+                edgeAt="left"
+                yAccessor={d => d.volume}
+                displayFormat={format(".4s")}
+                fill="#4c4c4c" />
+              <EdgeIndicator
+                itemType="last"
+                orient="right"
+                edgeAt="right"
+                yAccessor={d => d.volume}
+                displayFormat={format(".4s")}
+                fill="#4c4c4c" />
+            </Chart>
+
             <CrossHairCursor
               stroke="#bcbcbc" />
+
           </ChartCanvas>
         </div>
       );

@@ -11,6 +11,10 @@ import {
   priceDownwardResistanceFactor,
   priceUpwarddResistancePoint,
   priceUpwarddResistanceFactor,
+  minStockValue,
+  maxStockValue,
+  minVolumeValue,
+  maxVolumeValue,
 
 } from './Settings';
 import { gaussian } from '../utils/random';
@@ -39,7 +43,11 @@ export default class Stock {
 
     let g = gaussian(mean, stdDev);
     let gd = g();
-    return Math.max(Math.round(currentVol + gd), 0);
+
+    let value = Math.round(currentVol + gd);
+    value = Math.max(value, minVolumeValue);
+    value = Math.min(value, maxVolumeValue);
+    return value
   }
 
   randomWalkPrice (currentPrice) {
@@ -56,7 +64,11 @@ export default class Stock {
 
     let g = gaussian(mean, stdDev);
     let gd = g();
-    return currentPrice + gd;
+
+    let value = currentPrice + gd;
+    value = Math.max(value, minStockValue);
+    value = Math.min(value, maxStockValue);
+    return value
   }
 
   update (time) {

@@ -35,6 +35,12 @@ export const priceDownwardResistanceFactor = .2;
 export const priceUpwarddResistancePoint = 500;
 export const priceUpwarddResistanceFactor = .2;
 
+export const minStockValue = 1;
+export const maxStockValue = 1000;
+
+export const minVolumeValue = 1000;
+export const maxVolumeValue = 10000;
+
 // AI Modules
 export const moduleAttributes = {
   trailingAction: {
