@@ -1,6 +1,7 @@
 import Stock from './Stock'
 import Exchange from './Exchange'
 import { initialMinStockValue, initialMaxStockValue } from './Settings';
+import { stockSymbol, float } from '../utils/random';
 
 export function generateExchanges() {
   let exchanges = [];
@@ -10,14 +11,6 @@ export function generateExchanges() {
 }
 
 export function generateStocks(count = 1) {
-
-  function genSymb () {
-    return chance.string({
-      length: 3,
-      pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    })
-  }
-
   let stocks = [];
   let usedSymbols = [];
 
@@ -26,17 +19,17 @@ export function generateStocks(count = 1) {
 
     // Ensure unique symbols
     while (symbol === null || usedSymbols.includes(symbol)) {
-      symbol = genSymb();
+      symbol = stockSymbol();
     }
 
     usedSymbols.push(symbol);
 
     let data = {
       "symbol": symbol,
-      "price": chance.floating({min: initialMinStockValue, max: initialMaxStockValue, fixed: 2})
+      "price": float(initialMinStockValue, initialMaxStockValue, 2)
     };
 
-    stocks.push(new Stock(data))
+    stocks.push(new Stock(data));
   }
 
   return stocks
