@@ -46,7 +46,7 @@ $ NODE_ENV=development npm run build && npm run start
   * UI cleanup - again
   * Filter stock list
 * Simulation
-  * Better random walk simulation
+  * √ Better random walk simulation
   * Add support for multiple exchanges
   * Add capital gains tax
   * Add influence factors such as weather
@@ -54,8 +54,8 @@ $ NODE_ENV=development npm run build && npm run start
   * ...
 * Performance/Code Cleanup
   * Reduce memory usage
-  * Remove chancejs and write own random functions
-  * Remove lodash
+  * √ Remove chancejs and write own random functions
+  * √ Remove lodash
   * Stock and Portfolio tables are almost the same, maybe generalize them?
   * Generalize modules?
   * Lint
