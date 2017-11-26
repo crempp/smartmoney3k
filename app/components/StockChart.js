@@ -1,8 +1,6 @@
 import React from "react";
-import { scaleTime, scaleLinear } from "d3-scale";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
-import { extent } from "d3-array";
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
   BarSeries,
@@ -92,7 +90,9 @@ class StockChart extends React.Component {
             xScale={xScale}
             xAccessor={xAccessor}
             displayXAccessor={displayXAccessor}
-            xExtents={xExtents}
+            // NOTE: When I add xExtents the chart resets (won't stay zoomed)
+            // on every update.
+            // xExtents={xExtents}
             zoomMultiplier={1.05}
             pointsPerPxThreshold={0.5}
             minPointsPerPxThreshold={0.07}

@@ -1,4 +1,9 @@
-import { simulationTickMs, initialCash, backfillTicks } from './Settings';
+import {
+  simulationTickMs,
+  initialCash,
+  backfillTicks,
+  chartTimeSliceSeconds
+} from './Settings';
 import { generateExchanges } from './Generators';
 import Portfolio from './Portfolio';
 import Chart from './Chart';
@@ -161,7 +166,7 @@ export default class GameState {
     this.portfolio.update();
 
     // Update chart
-    if (this.tick % this.chart.timeSliceSeconds == 0) {
+    if (this.tick % chartTimeSliceSeconds === 0) {
       this.chart.updateData();
     }
 
