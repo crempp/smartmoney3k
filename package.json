@@ -1,7 +1,7 @@
 {
-  "name": "project-sg",
-  "version": "1.0.0",
-  "description": "",
+  "name": "smartmoney3k",
+  "version": "0.1.0",
+  "description": "An AI Stock simulation game. Build a series of rules to automatically buy and sell stocks. See how good you are at building and AI to make you rich.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,6 +24,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
+    "compression": "^1.7.1",
     "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "d3-format": "^1.2.1",
