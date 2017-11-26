@@ -1,8 +1,6 @@
 import React from "react";
-import { scaleTime, scaleLinear } from "d3-scale";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
-import { extent } from "d3-array";
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
   BarSeries,
@@ -29,32 +27,16 @@ import '../style/components/Chart.scss';
 /**
  * http://rrag.github.io/react-stockcharts/documentation.html
  */
-class StockChart extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: 400,
-      height: 400
-    };
-  }
-  componentDidMount() {
-    this.setState({
-      width: this.divElement.clientWidth,
-      height: this.divElement.clientHeight
-    });
-  }
-
+class WrappableChart extends React.Component {
   render() {
-    const red = "#801b15";   // "#FF0000";
-    const green = "#10631b"; // "#6BA583";
+    const red = "#801b15";
+    const green = "#10631b";
     const volChartHeight = 100;
 
-    const chart = this.props.chart;
-    const width = this.state.width;
-    const height = this.state.height;
-    const initialData = chart.data;
+    const width = this.props.width;
+    const height = this.props.height;
     const ratio = width / height;
+    const initialData = this.props.data
 
     const xScaleProvider = discontinuousTimeScaleProvider
       .inputDateAccessor(d => d.date);
@@ -66,14 +48,13 @@ class StockChart extends React.Component {
       displayXAccessor,
     } = xScaleProvider(initialData);
 
-    if (initialData.length > 1) {
+    if (data.length > 1) {
       const xStart = xAccessor(last(data));
       const xEnd = xAccessor(data[Math.max(0, data.length - 150)]);
       const xExtents = [xStart, xEnd];
 
       return (
-        <div className="chart-container"
-             ref={ (divElement) => this.divElement = divElement}>
+        <div className="chart-container">
           <ChartCanvas
             height={height}
 
@@ -92,7 +73,9 @@ class StockChart extends React.Component {
             xScale={xScale}
             xAccessor={xAccessor}
             displayXAccessor={displayXAccessor}
-            xExtents={xExtents}
+            // NOTE: When I add xExtents the chart resets (won't stay zoomed)
+            // on every update.
+            // xExtents={xExtents}
             zoomMultiplier={1.05}
             pointsPerPxThreshold={0.5}
             minPointsPerPxThreshold={0.07}
@@ -207,6 +190,58 @@ class StockChart extends React.Component {
   }
 }
 
-StockChart = fitWidth(StockChart);
+WrappableChart = fitWidth(WrappableChart);
+
+function updatingDataWrapper(ChartComponent) {
+  const LENGTH = 100;
+
+  class UpdatingComponent extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        length: LENGTH,
+        data: this.props.chart.data.slice(0, LENGTH),
+        width: 400,
+        height: 400,
+      };
+    }
+
+    componentDidMount() {
+      // this.setState({
+      //   width: this.divElement.clientWidth,
+      //   height: this.divElement.clientHeight
+      // });
+    }
+
+    componentWillUnmount() {
+      // if (this.interval) clearInterval(this.interval);
+    }
+
+    componentWillReceiveProps(nextProps) {
+      console.log("here")
+      if (this.state.data.length < nextProps.chart.data.length) {
+        this.setState({
+          length: this.state.length + 1,
+          data: nextProps.chart.data.slice(0, this.state.length + 1),
+        });
+      }
+    }
+
+    render() {
+      const { data } = this.state;
+
+      return <ChartComponent ref={ (divElement) => this.divElement = divElement}
+                             data={data}
+                             width={this.state.width}
+                             height={this.state.height}
+      />;
+    }
+  }
+
+  return UpdatingComponent;
+}
+
+const StockChart = updatingDataWrapper(WrappableChart);
 
 export default StockChart;

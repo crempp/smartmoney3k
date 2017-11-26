@@ -2,27 +2,26 @@
 
 An AI Stock simulation game. Build a series of rules to automatically buy and sell stocks. See how good you are at building and AI to make you rich.
 
-
 ## Demo
 [https://smartmoney3k.herokuapp.com/](https://smartmoney3k.herokuapp.com/)
 
-
 ## Running
 ```
-$ NODE_ENV=development npm run build && npm run start
+$ npm run start-dev
 ```
 
 ## Roadmap
 
 **v0.2**
-
 * General
-  * Backup seed gen for when offline
+  * ~~Backup seed gen for when offline~~
 * UI
+  * Streaming chart
   * Cash/Value graphs
   * Value change animations
+  * Technical graphs
 * Simulation
-  * ...
+  * √ Better random walk simulation
 * AI (Module) System
   * Better TrailingAction
     * Number of shares
@@ -33,8 +32,11 @@ $ NODE_ENV=development npm run build && npm run start
   * AND/OR/NOT connectors between modules
   * Module drag-n-drop
 * Performance/Code Cleanup
-  * Can I pass the actual gamestate object rather than the serialized version?
+  * √ Remove chancejs and write own random functions
+  * √ Remove lodash
   * Use Redux
+    * Can I pass the act
+ual gamestate object rather than the serialized version?
 
 **v0.3**
 * General
@@ -46,7 +48,6 @@ $ NODE_ENV=development npm run build && npm run start
   * UI cleanup - again
   * Filter stock list
 * Simulation
-  * √ Better random walk simulation
   * Add support for multiple exchanges
   * Add capital gains tax
   * Add influence factors such as weather
@@ -54,8 +55,6 @@ $ NODE_ENV=development npm run build && npm run start
   * ...
 * Performance/Code Cleanup
   * Reduce memory usage
-  * √ Remove chancejs and write own random functions
-  * √ Remove lodash
   * Stock and Portfolio tables are almost the same, maybe generalize them?
   * Generalize modules?
   * Lint
