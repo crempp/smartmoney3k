@@ -17,12 +17,27 @@ $ NODE_ENV=development npm run build && npm run start
 **v0.2**
 
 * General
-  * Backup seed gen for when offline
+  * ~~Backup seed gen for when offline~~
 * UI
   * Cash/Value graphs
-  * Value change animations
+  * √ Fix zoom/pan reset on update
+  * Technical graphs
 * Simulation
-  * ...
+  * √ Better random walk simulation
+  * Technical data generation
+    * Moving Average
+    * Bollinger Band
+    * Compare
+    * MACD
+    * RSI and ATR
+    * Stochastic Oscillator
+    * ForceIndex
+    * ElderRay
+    * Elder Impulse
+    * SAR
+    * Volume profile
+    * Volume profile by Session
+    * ...
 * AI (Module) System
   * Better TrailingAction
     * Number of shares
@@ -35,6 +50,8 @@ $ NODE_ENV=development npm run build && npm run start
 * Performance/Code Cleanup
   * Can I pass the actual gamestate object rather than the serialized version?
   * Use Redux
+  * √ Remove chancejs and write own random functions
+  * √ Remove lodash
 
 **v0.3**
 * General
@@ -45,8 +62,8 @@ $ NODE_ENV=development npm run build && npm run start
   * Pause and reconfigure AI methods
   * UI cleanup - again
   * Filter stock list
+  * Value change animations
 * Simulation
-  * √ Better random walk simulation
   * Add support for multiple exchanges
   * Add capital gains tax
   * Add influence factors such as weather
@@ -54,8 +71,6 @@ $ NODE_ENV=development npm run build && npm run start
   * ...
 * Performance/Code Cleanup
   * Reduce memory usage
-  * √ Remove chancejs and write own random functions
-  * √ Remove lodash
   * Stock and Portfolio tables are almost the same, maybe generalize them?
   * Generalize modules?
   * Lint
