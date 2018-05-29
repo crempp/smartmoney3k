@@ -1,11 +1,12 @@
 # Smart Money 3000
 
+[![CircleCI](https://circleci.com/gh/crempp/smartmoney3k.svg?style=svg)](https://circleci.com/gh/crempp/smartmoney3k)
+[![CRDemo](https://img.shields.io/badge/demo-cr-lightgrey.svg)](http://smartmoney3k.chadrempp.com)
+
 An AI Stock simulation game. Build a series of rules to automatically buy and sell stocks. See how good you are at building and AI to make you rich.
 
-
 ## Demo
-[https://smartmoney3k.herokuapp.com/](https://smartmoney3k.herokuapp.com/)
-
+[http://smartmoney3k.chadrempp.com/](http://smartmoney3k.chadrempp.com/)
 
 ## Running
 ```
