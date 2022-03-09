@@ -1,0 +1,12 @@
+.chart-container {
+  height: 100%;
+  .react-stockcharts-crosshair-cursor {
+    //background: #303030;
+  }
+  .react-stockcharts-tooltip {
+    fill: white;
+  }
+  .react-stockcharts-tooltip-label {
+    fill: yellow;
+  }
+}
