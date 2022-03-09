@@ -1,7 +1,6 @@
 import React from 'react';
 import Clock from './Clock';
 import styles from '../styles/components/Controls.module.scss';
-// import {styles as utilityStyles} from '../styles/utilities.scss';
 
 export default class Controls extends React.Component {
 

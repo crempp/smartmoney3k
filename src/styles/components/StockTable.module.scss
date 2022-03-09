@@ -5,6 +5,51 @@
   overflow-y: hidden;
 
   .stock-table {
+    font-size: 10px;
+    flex-grow: 1;
+
+    thead {
+      background-color: #0B4477;
+      color: #ccc;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
+      overflow-y: scroll;
+
+      > tr {
+        display: flex;
+        justify-content: space-evenly;
+        >th {
+          flex-basis: 50px;
+        }
+      }
+    }
+    tbody {
+      display: block;
+      overflow-y: scroll;
+      flex: 1 1 auto;
+
+      tr:hover {
+        background-color: rgba(150,150,150,0.4);
+      }
+      tr:hover td {
+        background-color: transparent;
+      }
+
+      tr {
+        display: flex;
+        justify-content: space-evenly;
+        cursor: pointer;
+
+        >td {
+          flex-basis: 50px;
+        }
+      }
+    }
+    td, th {
+      text-align: right;
+    }
+
     th:nth-of-type(1),
     td:nth-of-type(1) {
       flex-basis: 15px;

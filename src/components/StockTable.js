@@ -1,6 +1,6 @@
 import React from 'react';
 import StockRow from './StockRow';
-import '../styles/components/StockTable.module.scss';
+import styles from '../styles/components/StockTable.module.scss';
 
 export default class StockTable extends React.Component {
   constructor(props) {
@@ -25,11 +25,11 @@ export default class StockTable extends React.Component {
     });
 
     return (
-      <div className='flex-col-container exchange-container'>
+      <div className={`flex-col-container ${styles.exchangeContainer}`}>
         <div className='section-header'>
           EXCHANGE: {this.props.exchange.name}
         </div>
-        <table className='flex-col-container stock-table'>
+        <table className={`flex-col-container ${styles.stockTable}`}>
           <thead>
           <tr>
             <th>Symb</th>
