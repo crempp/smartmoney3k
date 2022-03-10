@@ -25,7 +25,7 @@ export default class PortfolioRow extends React.Component {
     }
 
     return (
-      <tr ref='tr'
+      <tr ref={(ref) => this.row = ref}
           className={classname}
           onClick={this.handleStockClick} >
         <td>{position.stock.symbol}</td>

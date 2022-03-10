@@ -10,8 +10,14 @@ An AI Stock simulation game. Build a series of rules to automatically buy and se
 
 ## Running
 ```
-$ NODE_ENV=development npm run build && npm run start
+$ npm run dev
 ```
+
+## Running in Docker
+```
+$ npm run dev
+```
+
 
 ## Roadmap
 

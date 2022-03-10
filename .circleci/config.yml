@@ -7,9 +7,31 @@
 defaults: &DEFAULT
   working_directory: ~/app
   docker:
-    - image: docker:17.09.0-ce-git
+    - image: circleci/node:16.14.0
 
-version: 2
+version: 2.1
+jobs:
+  build:
+    <<: *DEFAULT
+    steps:
+      - checkout
+      - run:
+          name: Update NPM
+          command: "sudo npm install -g npm@8"
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
+          command: npm run test:ci
+
+version: 2.1
 jobs:
   build:
     <<: *DEFAULT

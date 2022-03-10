@@ -8,12 +8,9 @@ import Controls from '../components/Controls';
 import AvailableModules from '../components/AvailableModules';
 import RunningModules from '../components/RunningModules';
 
-interface Props {}
+class Home extends React.Component {
 
-class Home extends React.Component<any, any> {
-  gameState: GameState;
-
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
 
     this.gameState = new GameState(this.triggerGameStateChange.bind(this));
@@ -34,7 +31,7 @@ class Home extends React.Component<any, any> {
     window.gameState = this.gameState;
   }
 
-  triggerGameStateChange(gamestate: GameState | undefined) {
+  triggerGameStateChange(gamestate) {
     if (gamestate === undefined) gamestate = this.state;
     this.setState(gamestate);
   }

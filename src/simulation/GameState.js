@@ -8,6 +8,7 @@ import { generateExchanges } from './Generators';
 import Portfolio from './Portfolio';
 import Chart from './Chart';
 import System from './System';
+import Exchange from "./Exchange";
 
 export default class GameState {
 

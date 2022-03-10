@@ -27,7 +27,7 @@ export default class StockRow extends React.Component {
   }
 
   // componentWillMount () {
-  componentWillReceiveProps (nextProps) {
+  //componentWillReceiveProps (nextProps) {
     // const stock = this.props.stock;
     //
     // if (!this.state.fading && stock.change !== 0 && !this.state.fadingJustCompleted) {
@@ -42,7 +42,7 @@ export default class StockRow extends React.Component {
     //     this.classname = 'redFadeInAnimated';
     //   }
     // }
-  }
+  //}
 
   componentDidUpdate() {
     // this.setState({
@@ -78,7 +78,7 @@ export default class StockRow extends React.Component {
     }
 
     return (
-      <tr ref='tr'
+      <tr ref={(ref) => this.row = ref}
           className={classname}
           onClick={this.handleStockClick} >
         <td>{stock.symbol}</td>
