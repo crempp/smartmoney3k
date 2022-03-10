@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "test:ci": "jest --ci",
-    "export": "npm run build && next export -o _static"
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "classnames": "^2.3.1",
