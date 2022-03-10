@@ -15,7 +15,8 @@ $ npm run dev
 
 ## Running in Docker
 ```
-$ npm run dev
+$ docker build . -t smartmoney3k
+$ docker run -p 3000:3000 smartmoney3k
 ```
 
 

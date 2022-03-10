@@ -1,17 +1,23 @@
-FROM node:9.11.1
-
-# use changes to package.json to force Docker not to use the cache
-# when we change our application's nodejs dependencies:
-COPY package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /app && cp -a /tmp/node_modules /app/
-
+FROM node:lts as dependencies
 WORKDIR /app
-COPY . /app
+COPY package.json package-lock.json ./
+RUN npm ci
 
-RUN npm run build
+FROM node:lts as builder
+WORKDIR /app
+COPY . .
+COPY --from=dependencies /app/node_modules ./node_modules
+RUN npm run export
 
-EXPOSE 8080
+FROM node:lts as digitalocean-runner
+WORKDIR /app
+ENV NODE_ENV production
+# If you are using a custom next.config.js file, uncomment this line.
+# COPY --from=builder /my-project/next.config.js ./
+COPY --from=builder /app/_static ./_static
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-# Launch application
-CMD ["npm","run","start"]
+EXPOSE 3000
+CMD ["npm", "run", "start"]
