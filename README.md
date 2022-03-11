@@ -19,11 +19,6 @@ $ docker build . -t smartmoney3k
 $ docker run -p 3000:3000 smartmoney3k
 ```
 
-## Manual Deploy
-```
-$ caprover deploy
-```
-
 ## Roadmap
 
 **v0.2**
