@@ -3,7 +3,7 @@ version: 2.1
 executors:
   nextjs-executor:
     docker:
-      - image: circleci/node:16.14.0
+      - image: circleci/node:16
 
 #defaults: &DEFAULT
 #  working_directory: ~/app
