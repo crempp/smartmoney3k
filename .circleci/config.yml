@@ -17,11 +17,11 @@ jobs:
     executor: nextjs-executor
     steps:
       - run:
-          name: Install JUnit coverage reporter
-          command: yarn add --dev jest-junit
+          name: Install jest-junit for coverage reporting
+          command: npm install jest-junit
       - run:
-          name: Run tests with JUnit as reporter
-          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
+          name: Run CI Tests
+          command: npm run test:ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
       - store_test_results:
