@@ -1,9 +1,6 @@
 version: 2.1
-
-executors:
-  nextjs-executor:
-    docker:
-      - image: circleci/node:16
+orbs:
+  node: circleci/node@5.0.0
 
 #defaults: &DEFAULT
 #  working_directory: ~/app
@@ -13,32 +10,28 @@ executors:
 
 jobs:
   test:
-#    <<: *DEFAULT
-    executor: nextjs-executor
+    docker:
+      - image: cimg/node:16.13
     steps:
       - checkout
-      - run:
-          name: Install jest-junit for coverage reporting
-          command: npm install jest-junit
+      - node/install-packages
       - run:
           name: Run CI Tests
-          command: npm run test:ci
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
-      - store_test_results:
-          path: ./reports/junit/
-  build:
-#    <<: *DEFAULT
-    executor: nextjs-executor
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Build application Docker image
           command: |
-            docker build -t lapinlabs/smartmoney3k .
-      # Note: we don't push here, we wait for tests to pass and push in the deploy job
+            npm run test:ci
+            npm run lint
+#  build:
+##    <<: *DEFAULT
+#    executor: nextjs-executor
+#    steps:
+#      - checkout
+#      - setup_remote_docker:
+#          docker_layer_caching: true
+#      - run:
+#          name: Build application Docker image
+#          command: |
+#            docker build -t lapinlabs/smartmoney3k .
+#      # Note: we don't push here, we wait for tests to pass and push in the deploy job
 
 
 #  deploy:
