@@ -16,6 +16,7 @@ jobs:
 #    <<: *DEFAULT
     executor: nextjs-executor
     steps:
+      - checkout
       - run:
           name: Install jest-junit for coverage reporting
           command: npm install jest-junit
